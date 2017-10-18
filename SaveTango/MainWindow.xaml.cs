@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SaveTango.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,10 +20,23 @@ namespace SaveTango
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
+    {  
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+       
+        
+        /// <summary>
+        /// A gomb a szintválasztó ablakot nyitja.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonClick_main_newgame(object sender, RoutedEventArgs e)
+        {
+            LevelSelection lvlSelWindow = new LevelSelection();
+            lvlSelWindow.ShowDialog();
         }
     }
 }

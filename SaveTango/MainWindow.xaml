@@ -5,9 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaveTango"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1024" Width="1280">
+        Title="MainWindow" Height="768" Width="1024">
+    <!-- <Window.Background>
+         <ImageBrush ImageSource="/SaveTango/Resources/main_background.jpg"></ImageBrush> 
+    </Window.Background> -->
     <Grid>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="196,147,0,0" VerticalAlignment="Top" Width="75"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="button_main_newgame" Content="New game"  HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="200" Height="60" Grid.Row="1" FontWeight="Bold" FontSize="28" Click="buttonClick_main_newgame"/>
+        <Button x:Name="button_main_highscores" Content="High scores"  HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="200" Height="60" Grid.Row="2" FontWeight="Bold" FontSize="28"/>
+        <Button x:Name="button_main_settings" Content="Settings"  HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="200" Height="60" Grid.Row="3" FontWeight="Bold" FontSize="28"/>
+        <Button x:Name="button_main_exit" Content="Exit" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="200" Height="60" Grid.Row="4" FontWeight="Bold" FontSize="28"/>
 
     </Grid>
 </Window>
