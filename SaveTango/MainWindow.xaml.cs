@@ -36,6 +36,8 @@ namespace SaveTango
         private void buttonClick_main_newgame(object sender, RoutedEventArgs e)
         {
             LevelSelection lvlSelWindow = new LevelSelection();
+            //lvlSelWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+
             lvlSelWindow.ShowDialog();
         }
     }

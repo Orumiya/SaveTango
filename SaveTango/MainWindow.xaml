@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:SaveTango"
         mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1024">
-    <!-- <Window.Background>
-         <ImageBrush ImageSource="/SaveTango/Resources/main_background.jpg"></ImageBrush> 
-    </Window.Background> -->
+    <Window.Background>
+        <ImageBrush Opacity="0.8" ImageSource="res/main_backround.jpg"></ImageBrush>
+    </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
