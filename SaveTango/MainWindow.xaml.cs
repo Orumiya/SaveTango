@@ -25,20 +25,22 @@ namespace SaveTango
         public MainWindow()
         {
             InitializeComponent();
+            
         }
        
         
         /// <summary>
-        /// A gomb a szintválasztó ablakot nyitja.
+        /// A gomb a szintválasztó ablakot nyitja oly módon, hogy az a main window ablakban nyílik meg.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void buttonClick_main_newgame(object sender, RoutedEventArgs e)
         {
             LevelSelection lvlSelWindow = new LevelSelection();
-            //lvlSelWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-
-            lvlSelWindow.ShowDialog();
+            lvlSelWindow.Owner = Application.Current.MainWindow; 
+            lvlSelWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            lvlSelWindow.Show();
+            //this.Close();
         }
     }
 }
