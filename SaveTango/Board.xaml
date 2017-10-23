@@ -10,13 +10,13 @@
         <ImageBrush Opacity="0.9" ImageSource="res/board_background1.jpg"></ImageBrush>
     </Window.Background>
     <StackPanel Orientation="Vertical">
-        <StackPanel Orientation="Horizontal" Height="120">
+        <StackPanel Orientation="Horizontal" Height="116">
             <Label Content="Moves:" Width="132" Height="50" FontSize="30" HorizontalContentAlignment="Center" Margin="150,0,0,0" HorizontalAlignment="Left" />
             <Label Content="Level x"  Width="149" Height="50" FontSize="30" HorizontalContentAlignment="Center" Margin="120,0,0,0"/>
             <Label Content="Time: 00:00" Width="167" Height="50" FontSize="30" HorizontalContentAlignment="Center" Margin="120,0,0,0"/>
         </StackPanel>
         <Canvas Height="600" Width="600">
-            <Image Source="res/2vertical.PNG" Canvas.Left="100" Canvas.Top="300" Height="200" Width="100" HorizontalAlignment="Center"/>
+            <Image Source="res/2vertical.PNG" Canvas.Left="100" Canvas.Top="400" Height="200" Width="100" HorizontalAlignment="Center" MouseDown="OnMouseDown" MouseUp="OnMouseUp" MouseMove="OnMouseMove"/>
         </Canvas>
 
     </StackPanel>

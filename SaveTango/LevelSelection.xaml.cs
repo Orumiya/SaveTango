@@ -19,9 +19,19 @@ namespace SaveTango
     /// </summary>
     public partial class LevelSelection : Window
     {
+        
+
         public LevelSelection()
         {
             InitializeComponent();
+        }
+
+        private void OnSelectLevelClick(object sender, RoutedEventArgs e)
+        {
+            Board boardWindow = new Board();
+            boardWindow.Owner = Application.Current.MainWindow;
+            boardWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            boardWindow.Show();
         }
     }
 }

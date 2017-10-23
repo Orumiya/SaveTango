@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace SaveTango.Model
 {
@@ -45,21 +46,69 @@ namespace SaveTango.Model
             set { blockImage = value; }
         }
 
-        private int canvasRowNumber;
+        private int initialCanvasTop;
 
-        public int CanvasRowNumber
+        public int InitialCanvasTop
         {
-            get { return canvasRowNumber; }
-            set { canvasRowNumber = value; }
+            get { return initialCanvasTop; }
+            set { initialCanvasTop = value; }
         }
 
-        private int canvasColumnNummer;
 
-        public int CanvasColumnNummer
+        private int initialCanvasLeft;
+
+        public int InitialCanvasLeft
         {
-            get { return canvasColumnNummer; }
-            set { canvasColumnNummer = value; }
+            get { return initialCanvasLeft; }
+            set { initialCanvasLeft = value; }
         }
 
+
+
+        /// <summary>
+        /// A Block osztály konstruktora három paraméterrel
+        /// </summary>
+        /// <param name="vertical">függőlegesen áll-e a blokk?</param>
+        /// <param name="blockLength">milyen hosszú a blokk?</param>
+        /// <param name="blockImage">a blokkhoz tartozó kép</param>
+        public Block(bool vertical, int blockLength, int initialCanvasTop, int initialCanvasLeft)
+        {
+            this.vertical = vertical;
+            this.blockLength = blockLength;
+            this.blockImage = this.WhichImageGoesToWhichBlock();
+            this.initialCanvasTop = initialCanvasTop;
+            this.initialCanvasLeft = initialCanvasLeft;
+        }
+
+        private Image WhichImageGoesToWhichBlock()
+        {
+            Image img = new Image();
+            Uri uri;
+            if (vertical & blockLength ==2)
+            {
+                uri = new Uri("res/2vertical.PNG");
+                img.Source = new BitmapImage(uri);
+                return img;
+
+            }
+            else if (vertical & blockLength == 3)
+            {
+                uri = new Uri("res/3vertical.PNG");
+                img.Source = new BitmapImage(uri);
+                return img;
+            }
+            else if (!vertical & blockLength == 2)
+            {
+                uri = new Uri("res/2horizontal.PNG");
+                img.Source = new BitmapImage(uri);
+                return img;
+            }
+            else
+            {
+                uri = new Uri("res/3horizontal.PNG");
+                img.Source = new BitmapImage(uri);
+                return img;
+            }
+        }
     }
 }

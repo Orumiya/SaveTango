@@ -6,9 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SaveTango.Model
-{   /// <summary>
-/// A class az adatkötésekhez szükséges OnPropertyChanged metódust szolgáltatja.
-/// </summary>
+{
+    /// <summary>
+    /// A class az adatkötésekhez szükséges OnPropertyChanged metódust szolgáltatja.
+    /// </summary>
     public class Bindable : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
