@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaveTango"
         mc:Ignorable="d"
-        Title="Board" Height="768" Width="1024">
+        Title="Board" Height="768" Width="1024" Loaded="OnWindowLoaded">
     <Window.Background>
         <ImageBrush Opacity="0.9" ImageSource="res/board_background1.jpg"></ImageBrush>
     </Window.Background>
@@ -15,8 +15,8 @@
             <Label Content="Level x"  Width="149" Height="50" FontSize="30" HorizontalContentAlignment="Center" Margin="120,0,0,0"/>
             <Label Content="Time: 00:00" Width="167" Height="50" FontSize="30" HorizontalContentAlignment="Center" Margin="120,0,0,0"/>
         </StackPanel>
-        <Canvas Height="600" Width="600">
-            <Image Source="res/2vertical.PNG" Canvas.Left="100" Canvas.Top="400" Height="200" Width="100" HorizontalAlignment="Center" MouseDown="OnMouseDown" MouseUp="OnMouseUp" MouseMove="OnMouseMove"/>
+        <Canvas Name="boardCanvas" Height="600" Width="600">
+            <Image MouseDown="OnMouseDown" MouseUp="OnMouseUp" MouseMove="OnMouseMove"/>
         </Canvas>
 
     </StackPanel>

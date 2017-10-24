@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SaveTango.Model;
+using SaveTango.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -19,6 +19,7 @@ namespace SaveTango
     /// </summary>
     public partial class Board : Window
     {
+        private BoardWindowViewModel bwVM;
         /// <summary>
         /// le van-e nyomva az egér gombja?
         /// </summary>
@@ -66,27 +67,43 @@ namespace SaveTango
         /// <summary>
         /// az egér mozgatásakor
         /// ha meg van nyomva az egér gombja,
-        /// akkor lekéri a xaml-ből a kattintott Image objektum 
+        /// megnézi, hogy a kattintott blokk horizontális vagy vertikális-e, és
+        /// ennek függvényében engedi mozgatni a képet.
         /// </summary>
         /// <param name="sender">az OnMouseMove metódus object típusú paramétere (automatikus)</param>
         /// <param name="e">az OnMouseMove metódus MouseButtonEventArgs típusú paramétere (automatikus)</param>
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
-            if (pressed)
+            Block block = this.bwVM.WhichBlockIsThis((Image)sender);
+            if (this.pressed)
             {
-                double top = Canvas.GetTop((Image)sender) + Mouse.GetPosition((Image)sender).Y - clickedPoint.Y; //mivel a téglalapba nem mindig a tetején kattintok
-                //Canvas.SetTop((Image)sender, top); //állítsd be az objektum felső koordinátáját + beadom neki a top változót
-                double left = Canvas.GetLeft((Image)sender) + Mouse.GetPosition((Image)sender).X - clickedPoint.X; //mivel a téglalapba nem mindig a tetején kattintok
-                Canvas.SetLeft((Image)sender, left);
+                if (block.Vertical)
+                {
+                    double top = Canvas.GetTop((Image)sender) + Mouse.GetPosition((Image)sender).Y - this.clickedPoint.Y; 
+                    Canvas.SetTop((Image)sender, top);
+                }
+                else
+                {
+                    double left = Canvas.GetLeft((Image)sender) + Mouse.GetPosition((Image)sender).X - this.clickedPoint.X;
+                    Canvas.SetLeft((Image)sender, left);
+                }
             }
         }
 
-        Dictionary<Image, Block> imageBlockDictionary;
-
-        private void WhichBlockIsMyImage()
+        private void OnWindowLoaded(object sender, RoutedEventArgs e)
         {
-            imageBlockDictionary = new Dictionary<Image, Block>();
-            
+            this.bwVM = new BoardWindowViewModel();
+            this.DataContext = this.bwVM;
+            for (int i = 0; i < this.bwVM.GameLevelSetup.Count; i++)
+            {
+                Image img = this.bwVM.GameLevelSetup[i].BlockImage;
+                Canvas.SetTop(img, this.bwVM.GameLevelSetup[i].InitialCanvasTop);
+                Canvas.SetLeft(img, this.bwVM.GameLevelSetup[i].InitialCanvasLeft);
+                img.MouseDown += this.OnMouseDown;
+                img.MouseUp += this.OnMouseUp;
+                img.MouseMove += this.OnMouseMove;
+                boardCanvas.Children.Add(img);
+            }
         }
     }
 }

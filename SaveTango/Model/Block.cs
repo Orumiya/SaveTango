@@ -8,8 +8,26 @@ using System.Windows.Media.Imaging;
 
 namespace SaveTango.Model
 {
-    class Block 
+    public class Block
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Block"/> class.
+        /// A Block osztály konstruktora
+        /// </summary>
+        /// <param name="vertical">függőlegesen áll-e a blokk?</param>
+        /// <param name="blockLength">milyen hosszú a blokk?</param>
+        /// <param name="blockImage">a blokkhoz tartozó kép</param>
+        /// <param name="initialCanvasTop">a blokk kezdő pozíciója a tábla tetejétől számítva</param>
+        /// <param name="initialCanvasLeft">a blokk kezdő pozíciója a tábla bal oldalától számítva</param>
+        public Block(bool vertical, int blockLength, int initialCanvasTop, int initialCanvasLeft)
+        {
+            this.vertical = vertical;
+            this.blockLength = blockLength;
+            this.blockImage = this.WhichImageGoesToWhichBlock();
+            this.initialCanvasTop = initialCanvasTop;
+            this.initialCanvasLeft = initialCanvasLeft;
+        }
+
         /// <summary>
         /// a vertical property azt mondja meg, hogy a blokk horizontálisan vagy vertikálisan helyezkedik-e el
         /// vertical igaz, ha vertikális
@@ -19,8 +37,8 @@ namespace SaveTango.Model
 
         public bool Vertical
         {
-            get { return vertical; }
-            set { vertical = value; }
+            get { return this.vertical; }
+            set { this.vertical = value; }
         }
 
         /// <summary>
@@ -31,8 +49,8 @@ namespace SaveTango.Model
 
         public int BlockLenght
         {
-            get { return blockLength; }
-            set { blockLength = value; }
+            get { return this.blockLength; }
+            set { this.blockLength = value; }
         }
 
         /// <summary>
@@ -42,70 +60,58 @@ namespace SaveTango.Model
 
         public Image BlockImage
         {
-            get { return blockImage; }
-            set { blockImage = value; }
+            get { return this.blockImage; }
+            set { this.blockImage = value; }
         }
 
+        /// <summary>
+        /// a blokk kezdő pozíciója a tábla tetejétől számítva
+        /// </summary>
         private int initialCanvasTop;
 
         public int InitialCanvasTop
         {
-            get { return initialCanvasTop; }
-            set { initialCanvasTop = value; }
+            get { return this.initialCanvasTop; }
+            set { this.initialCanvasTop = value; }
         }
 
-
+        /// <summary>
+        /// a blokk kezdő pozíciója a tábla bal oldalától számítva
+        /// </summary>
         private int initialCanvasLeft;
 
         public int InitialCanvasLeft
         {
-            get { return initialCanvasLeft; }
-            set { initialCanvasLeft = value; }
-        }
-
-
-
-        /// <summary>
-        /// A Block osztály konstruktora három paraméterrel
-        /// </summary>
-        /// <param name="vertical">függőlegesen áll-e a blokk?</param>
-        /// <param name="blockLength">milyen hosszú a blokk?</param>
-        /// <param name="blockImage">a blokkhoz tartozó kép</param>
-        public Block(bool vertical, int blockLength, int initialCanvasTop, int initialCanvasLeft)
-        {
-            this.vertical = vertical;
-            this.blockLength = blockLength;
-            this.blockImage = this.WhichImageGoesToWhichBlock();
-            this.initialCanvasTop = initialCanvasTop;
-            this.initialCanvasLeft = initialCanvasLeft;
+            get { return this.initialCanvasLeft; }
+            set { this.initialCanvasLeft = value; }
         }
 
         private Image WhichImageGoesToWhichBlock()
         {
             Image img = new Image();
             Uri uri;
-            if (vertical & blockLength ==2)
+            if (this.vertical & this.blockLength == 2)
             {
-                uri = new Uri("res/2vertical.PNG");
+                uri = new Uri("pack://application:,,,/res/2vertical.PNG", UriKind.RelativeOrAbsolute);
                 img.Source = new BitmapImage(uri);
                 return img;
 
             }
-            else if (vertical & blockLength == 3)
+            else if (this.vertical & this.blockLength == 3)
             {
-                uri = new Uri("res/3vertical.PNG");
+                uri = new Uri("pack://application:,,,/res/3vertical.PNG", UriKind.RelativeOrAbsolute);
                 img.Source = new BitmapImage(uri);
                 return img;
             }
-            else if (!vertical & blockLength == 2)
+            else if (!this.vertical & this.blockLength == 2)
             {
-                uri = new Uri("res/2horizontal.PNG");
+                uri = new Uri("pack://application:,,,/res/2horizontal.PNG", UriKind.RelativeOrAbsolute);
                 img.Source = new BitmapImage(uri);
                 return img;
             }
             else
             {
-                uri = new Uri("res/3horizontal.PNG");
+                uri = new Uri("pack://application:,,,/res/3horizontal.PNG", UriKind.RelativeOrAbsolute);
                 img.Source = new BitmapImage(uri);
                 return img;
             }
