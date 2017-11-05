@@ -30,9 +30,12 @@ namespace SaveTango
         /// </summary>
         private Point clickedPoint;
 
+        GamePlay gameplay;
+
         public Board()
         {
             InitializeComponent();
+            gameplay = new GamePlay();
         }
 
         /// <summary>
@@ -97,13 +100,16 @@ namespace SaveTango
             for (int i = 0; i < this.bwVM.GameLevelSetup.Count; i++)
             {
                 Image img = this.bwVM.GameLevelSetup[i].BlockImage;
+                img.Name = "blockimage" + i.ToString();
+                this.RegisterName(img.Name, img);
                 Canvas.SetTop(img, this.bwVM.GameLevelSetup[i].InitialCanvasTop);
                 Canvas.SetLeft(img, this.bwVM.GameLevelSetup[i].InitialCanvasLeft);
                 img.MouseDown += this.OnMouseDown;
                 img.MouseUp += this.OnMouseUp;
                 img.MouseMove += this.OnMouseMove;
-                boardCanvas.Children.Add(img);
+                this.boardCanvas.Children.Add(img);
             }
+
         }
     }
 }

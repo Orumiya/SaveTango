@@ -60,9 +60,11 @@
     <Compile Include="Board.xaml.cs">
       <DependentUpon>Board.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Bar.cs" />
     <Compile Include="Model\Bindable.cs" />
     <Compile Include="Model\Block.cs" />
     <Compile Include="Model\GamePlay.cs" />
+    <Compile Include="Model\Tango.cs" />
     <Compile Include="ViewModel\BoardWindowViewModel.cs" />
     <Compile Include="ViewModel\LevelSelectionViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
@@ -136,6 +138,9 @@
     <Resource Include="res\2vertical.PNG" />
     <Resource Include="res\3horizontal.PNG" />
     <Resource Include="res\3vertical.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\Tango.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

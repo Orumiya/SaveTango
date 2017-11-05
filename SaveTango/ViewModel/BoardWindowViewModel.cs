@@ -29,15 +29,16 @@ namespace SaveTango.ViewModel
         public BoardWindowViewModel()
         {
             this.gameLevelSetup = new ObservableCollection<Block> {
-                new Block(true, 2, 0, 0),
-                new Block(true, 2, 0, 300),
-                new Block(true, 2, 300, 0),
-                new Block(true, 3, 0, 200),
-                new Block(true, 3, 200, 500),
-                new Block(false, 2, 0, 400),
-                new Block(false, 2, 100, 400),
-                new Block(false, 3, 300, 100),
-                new Block(false, 2, 500, 100)
+                new Bar(true, 2, 0, 0),
+                new Bar(true, 2, 0, 300),
+                new Bar(true, 2, 300, 0),
+                new Bar(true, 3, 0, 200),
+                new Bar(true, 3, 200, 500),
+                new Bar(false, 2, 0, 400),
+                new Bar(false, 2, 100, 400),
+                new Bar(false, 3, 300, 100),
+                new Bar(false, 2, 500, 100),
+                new Tango()
             };
             this.MakeADictionary();
         }
@@ -53,9 +54,8 @@ namespace SaveTango.ViewModel
 
         public Block WhichBlockIsThis(Image image)
         {
-            Block block = this.imageBlockDictionary[image];
+            Block block = imageBlockDictionary[image];
             return block;
-
         }
 
     }
