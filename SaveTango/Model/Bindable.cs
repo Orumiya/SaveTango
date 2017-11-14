@@ -14,9 +14,12 @@ namespace SaveTango.Model
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void OnPropertyChanged(string propertyname, PropertyChangedEventArgs e)
+        public void OnPropertyChanged(string propertyname)
         {
-            this.OnPropertyChanged(propertyname, new PropertyChangedEventArgs("propertyname"));
+            if (this.PropertyChanged != null)
+            {
+                this.PropertyChanged(propertyname, new PropertyChangedEventArgs("propertyname"));
+            }
         }
     }
 }

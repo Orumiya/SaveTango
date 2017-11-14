@@ -20,6 +20,7 @@ namespace SaveTango
     public partial class Board : Window
     {
         private BoardWindowViewModel bwVM;
+
         /// <summary>
         /// le van-e nyomva az egér gombja?
         /// </summary>
@@ -77,7 +78,7 @@ namespace SaveTango
         /// <param name="e">az OnMouseMove metódus MouseButtonEventArgs típusú paramétere (automatikus)</param>
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
-            Block block = this.bwVM.WhichBlockIsThis((Image)sender);
+            Block block = this.bwVM.GamePlay.WhichBlockIsThis((Image)sender);
             if (this.pressed)
             {
                 if (block.Vertical)
@@ -97,13 +98,13 @@ namespace SaveTango
         {
             this.bwVM = new BoardWindowViewModel();
             this.DataContext = this.bwVM;
-            for (int i = 0; i < this.bwVM.GameLevelSetup.Count; i++)
+            for (int i = 0; i < this.bwVM.GamePlay.LevelSetup.Count; i++)
             {
-                Image img = this.bwVM.GameLevelSetup[i].BlockImage;
+                Image img = this.bwVM.GamePlay.LevelSetup[i].BlockImage;
                 img.Name = "blockimage" + i.ToString();
                 this.RegisterName(img.Name, img);
-                Canvas.SetTop(img, this.bwVM.GameLevelSetup[i].InitialCanvasTop);
-                Canvas.SetLeft(img, this.bwVM.GameLevelSetup[i].InitialCanvasLeft);
+                Canvas.SetTop(img, this.bwVM.GamePlay.LevelSetup[i].InitialCanvasTop);
+                Canvas.SetLeft(img, this.bwVM.GamePlay.LevelSetup[i].InitialCanvasLeft);
                 img.MouseDown += this.OnMouseDown;
                 img.MouseUp += this.OnMouseUp;
                 img.MouseMove += this.OnMouseMove;
