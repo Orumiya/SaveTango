@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
-
-namespace SaveTango.Model
+﻿namespace SaveTango.Model
 {
+    using System.Windows.Controls;
+
     public class Block
     {
         /// <summary>
@@ -66,6 +60,9 @@ namespace SaveTango.Model
             get;
             set;
         }
+
+        public virtual int OnTableX { get; set; }
+        public virtual int OnTableY { get; set; }
 
     }
 }

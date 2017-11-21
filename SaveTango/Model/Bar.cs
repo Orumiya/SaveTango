@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
-
-namespace SaveTango.Model
+﻿namespace SaveTango.Model
 {
+    using System;
+    using System.Windows.Controls;
+    using System.Windows.Media.Imaging;
+
     public class Bar : Block
     {
         /// <summary>
@@ -37,6 +33,10 @@ namespace SaveTango.Model
         public override int InitialCanvasTop { get => base.InitialCanvasTop; set => base.InitialCanvasTop = value; }
 
         public override int InitialCanvasLeft { get => base.InitialCanvasLeft; set => base.InitialCanvasLeft = value; }
+
+        public override int OnTableX { get => this.InitialCanvasLeft / 100; set => this.OnTableX = this.InitialCanvasLeft / 100; }
+
+        public override int OnTableY { get => this.InitialCanvasTop / 100; set => this.OnTableY = this.InitialCanvasTop / 100; }
 
         /// <summary>
         /// megállapítja, hogy a táblán levő rúd hossza és orientációja

@@ -28,7 +28,7 @@ namespace SaveTango
 
         private void OnSelectLevelClick(object sender, RoutedEventArgs e)
         {
-            Board boardWindow = new Board();
+            BoardWindow boardWindow = new BoardWindow();
             boardWindow.Owner = Application.Current.MainWindow;
             boardWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             boardWindow.Show();

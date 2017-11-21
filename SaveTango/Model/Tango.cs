@@ -19,6 +19,7 @@ namespace SaveTango.Model
             this.BlockImage = this.GetMeTheBestTangoPicture();
             this.InitialCanvasTop = 200;
             this.InitialCanvasLeft = 0;
+            this.IsSaved = false;
         }
 
         /// <summary>
@@ -40,6 +41,11 @@ namespace SaveTango.Model
 
         public override int InitialCanvasLeft { get => base.InitialCanvasLeft; set => base.InitialCanvasLeft = value; }
 
+        public override int OnTableX { get => this.InitialCanvasLeft / 100; set => this.OnTableX = this.InitialCanvasLeft / 100; }
+
+        public override int OnTableY { get => this.InitialCanvasTop / 100; set => this.OnTableY = this.InitialCanvasTop / 100; }
+
+
         /// <summary>
         /// Tangohoz hozzárendeli a megfelelő képet
         /// </summary>
@@ -50,6 +56,19 @@ namespace SaveTango.Model
             Uri uri = new Uri("pack://application:,,,/res/Tango.PNG", UriKind.RelativeOrAbsolute);
             img.Source = new BitmapImage(uri);
             return img;
+        }
+
+        public bool IsSaved { get; set; }
+
+
+        public bool IsTangoSaved()
+        {
+            if (this.OnTableX == 4 && this.OnTableY == 2)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

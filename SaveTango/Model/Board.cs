@@ -1,16 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SaveTango.Model
+﻿namespace SaveTango.Model
 {
     public class Board : Bindable
     {
+        private double tableWidth;
+
+        public double TableWidth
+        {
+            get { return tableWidth; }
+            set { tableWidth = value; }
+        }
+        private double tableHeight;
+
+        public double TableHeight
+        {
+            get { return tableHeight; }
+            set { tableHeight = value; }
+        }
+
         public Board()
         {
             this.Table = new bool[6, 6];
+            this.TableWidth = 600;
+            this.TableHeight = 600;
             this.TableInitializer();
         }
 
@@ -40,6 +51,19 @@ namespace SaveTango.Model
                 }
             }
         }
+
+        //private string Kiir()
+        //{
+        //    string szo = "";
+        //    for (int i = 0; i < this.Table.GetLength(0); i++)
+        //    {
+        //        for (int j = 0; j < this.Table.GetLength(1); j++)
+        //        {
+        //            szo += this.Table[i, j];
+        //        }
+        //    }
+        //    return szo;
+        //}
 
     }
 }
