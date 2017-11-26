@@ -13,15 +13,16 @@
         /// <param name="vertical">függőlegesen áll-e a blokk?</param>
         /// <param name="blockLength">milyen hosszú a blokk?</param>
         /// <param name="blockImage">a blokkhoz tartozó kép</param>
-        /// <param name="initialCanvasTop">a blokk kezdő pozíciója a tábla tetejétől számítva</param>
-        /// <param name="initialCanvasLeft">a blokk kezdő pozíciója a tábla bal oldalától számítva</param>
-        public Bar(bool vertical, int blockLength, int initialCanvasTop, int initialCanvasLeft)
+       
+        public Bar(bool vertical, int blockLength, int onTableX, int onTableY)
         {
             this.Vertical = vertical;
             this.BlockLength = blockLength;
             this.BlockImage = this.WhichImageGoesToWhichBlock();
-            this.InitialCanvasTop = initialCanvasTop;
-            this.InitialCanvasLeft = initialCanvasLeft;
+            this.OnTableX = onTableX;
+            this.OnTableY = onTableY;
+
+
         }
 
         public override bool Vertical { get => base.Vertical; set => base.Vertical = value; }
@@ -33,10 +34,9 @@
         public override int InitialCanvasTop { get => base.InitialCanvasTop; set => base.InitialCanvasTop = value; }
 
         public override int InitialCanvasLeft { get => base.InitialCanvasLeft; set => base.InitialCanvasLeft = value; }
+        public override int OnTableX { get => base.OnTableX; set => base.OnTableX = value; }
+        public override int OnTableY { get => base.OnTableY; set => base.OnTableY = value; }
 
-        public override int OnTableX { get => this.InitialCanvasLeft / 100; set => this.OnTableX = this.InitialCanvasLeft / 100; }
-
-        public override int OnTableY { get => this.InitialCanvasTop / 100; set => this.OnTableY = this.InitialCanvasTop / 100; }
 
         /// <summary>
         /// megállapítja, hogy a táblán levő rúd hossza és orientációja

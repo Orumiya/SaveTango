@@ -60,8 +60,14 @@
             get;
             set;
         }
-
+        /// <summary>
+        /// a blokk kezdő sor koordinátája
+        /// </summary>
         public virtual int OnTableX { get; set; }
+
+        /// <summary>
+        /// a blokk kezdő oszlop koordinátája
+        /// </summary>
         public virtual int OnTableY { get; set; }
 
     }

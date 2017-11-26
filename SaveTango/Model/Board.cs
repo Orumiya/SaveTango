@@ -1,5 +1,11 @@
 ﻿namespace SaveTango.Model
 {
+    public enum FieldType
+    {
+        Empty,
+        Taken
+    }
+
     public class Board : Bindable
     {
         private double tableWidth;
@@ -19,15 +25,15 @@
 
         public Board()
         {
-            this.Table = new bool[6, 6];
+            this.Table = new FieldType[6, 6];
             this.TableWidth = 600;
             this.TableHeight = 600;
             this.TableInitializer();
         }
 
-        private bool[,] table;
+        private FieldType[,] table;
 
-        public bool[,] Table
+        public FieldType[,] Table
         {
             get
             {
@@ -47,23 +53,9 @@
             {
                 for (int j = 0; j < this.Table.GetLength(1); j++)
                 {
-                    this.Table[i, j] = false;
+                    this.Table[i, j] = FieldType.Empty;
                 }
             }
         }
-
-        //private string Kiir()
-        //{
-        //    string szo = "";
-        //    for (int i = 0; i < this.Table.GetLength(0); i++)
-        //    {
-        //        for (int j = 0; j < this.Table.GetLength(1); j++)
-        //        {
-        //            szo += this.Table[i, j];
-        //        }
-        //    }
-        //    return szo;
-        //}
-
     }
 }
