@@ -5,6 +5,8 @@
     using System.Windows.Input;
     using SaveTango.Model;
     using SaveTango.ViewModel;
+    using System.Windows.Threading;
+    using System;
 
     /// <summary>
     /// Interaction logic for Board.xaml
@@ -25,6 +27,11 @@
         /// </summary>
         private bool pressed = false;
 
+        private DispatcherTimer timer;
+
+        private int missingX = 0;
+
+        private int missingY = 0;
 
         /// <summary>
         /// hol kattintottam le az egeret az Image-n belül? mindig lekérhető az x és y propertyje --> pl Image-n belül 7 pixellel lejjebb
@@ -81,17 +88,20 @@
         private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             this.pressed = true;
-            this.clickedPoint = Mouse.GetPosition((Image)sender); // a clickedpoint azt jelenti, hogy a Blockon belül hova kattint a user (ezzel kell korrigálni a vertical és horizontal mozgatásban használt koordinátákat)
-            Mouse.Capture((Image)sender);
-            this.ActualBlock = this.bwVM.GamePlay.WhichBlockIsThis((Image)sender);
-            this.Gameplay.MinLimitLeft = this.Gameplay.HorizontalBlockIsMovableToLeft(this.ActualBlock);
-            this.Gameplay.MaxLimitRight = this.Gameplay.HorizontalBlockIsMovableToRight(this.ActualBlock);
-            this.Gameplay.MinLimitTop = this.Gameplay.VerticalBlockIsMovableToTop(this.ActualBlock);
-            this.Gameplay.MaxLimitBottom = this.Gameplay.VerticalBlockIsMovableToBottom(this.ActualBlock);
-            this.MinLimitLeftPixel = this.Gameplay.MinLimitLeft * 100;
-            this.MinLimitTopPixel = this.Gameplay.MinLimitTop * 100;
-            this.MaxLimitBottomPixel = this.Gameplay.MaxLimitBottom * 100;
-            this.MaxLimitRightPixel = this.Gameplay.MaxLimitRight * 100;
+            if (sender is Image)
+            {
+                this.clickedPoint = Mouse.GetPosition((Image)sender); // a clickedpoint azt jelenti, hogy a Blockon belül hova kattint a user (ezzel kell korrigálni a vertical és horizontal mozgatásban használt koordinátákat)
+                Mouse.Capture((Image)sender);
+                this.ActualBlock = this.bwVM.GamePlay.WhichBlockIsThis((Image)sender);
+                this.Gameplay.MinLimitLeft = this.Gameplay.HorizontalBlockIsMovableToLeft(this.ActualBlock);
+                this.Gameplay.MaxLimitRight = this.Gameplay.HorizontalBlockIsMovableToRight(this.ActualBlock);
+                this.Gameplay.MinLimitTop = this.Gameplay.VerticalBlockIsMovableToTop(this.ActualBlock);
+                this.Gameplay.MaxLimitBottom = this.Gameplay.VerticalBlockIsMovableToBottom(this.ActualBlock);
+                this.MinLimitLeftPixel = this.Gameplay.MinLimitLeft * 100;
+                this.MinLimitTopPixel = this.Gameplay.MinLimitTop * 100;
+                this.MaxLimitBottomPixel = this.Gameplay.MaxLimitBottom * 100;
+                this.MaxLimitRightPixel = this.Gameplay.MaxLimitRight * 100;
+            }
         }
 
         /// <summary>
@@ -104,14 +114,10 @@
         /// <param name="e">az OnMouseMove metódus MouseButtonEventArgs típusú paramétere (automatikus)</param>
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
-            if (this.pressed)
+            if (this.pressed && sender is Image)
             {
                 double directionHorizontal = this.DirectionHorizontalPixelCounter(sender, e);
                 double directionVertical = this.DirectionVerticalPixelCounter(sender, e, directionHorizontal);
-                //string tesztszoveg = "directionHorizontal: " + directionHorizontal;
-
-                //tesztszoveg += "directionVertical: " + directionVertical;
-                //TextboxTest.Text = tesztszoveg;
 
                 if (this.ActualBlock.Vertical)
                 {
@@ -172,7 +178,6 @@
                     }
 
                 }
-                //TextboxTest.Text = tesztszoveg + verticalX;
             }
         }
 
@@ -186,11 +191,59 @@
         private void OnMouseUp(object sender, MouseButtonEventArgs e)
         {
             this.pressed = false;
-            // itt mindig a Block InitialX- és InitialY elemét kell kapnia, különben exceptiont dob
-            this.Gameplay.ActualSetupUpdater(this.ActualBlock, 5, 4, this.Direction);
+            if (sender is Image)
+            {
+                int gx = (int)Canvas.GetTop((Image)sender);
+                int gy = (int)Canvas.GetLeft((Image)sender);
+                int getX = 0;
+                int getY = 0;
+                if (gx % 100 > 50)
+                {
+                    getX = ((int)Canvas.GetTop((Image)sender) / 100) + 1;
+                    missingX = 100 - (gx % 100);
+                }
+                else
+                {
+                    getX = (int)Canvas.GetTop((Image)sender) / 100;
+                    missingX = (gx % 100) * (-1);
+                }
+
+                if (gy % 100 > 50)
+                {
+                    getY = ((int)Canvas.GetLeft((Image)sender) / 100) + 1;
+                    missingY = 100 - (gy % 100);
+                }
+                else
+                {
+                    getY = (int)Canvas.GetLeft((Image)sender) / 100;
+                    missingY = (gy % 100) * (-1);
+                }
+                string tesztszoveg = "gx " + gx + "getX "+ getX + "missingX"+ missingX +"gy" + gy + "getY" + getY + "missingY"+missingY;
+                TextboxTest.Text = tesztszoveg;
+                // itt mindig a Block InitialX- és InitialY elemét kell kapnia, különben exceptiont dob
+                if (this.ActualBlock != null)
+                {
+                    if (getX != this.ActualBlock.OnTableX || getY != this.ActualBlock.OnTableY)
+                    {
+                        timer = new DispatcherTimer();
+                        timer.Interval = new TimeSpan(0, 0, 0, 0, 20);
+                        //timer.Tick += Timer_Tick;
+                        this.Gameplay.ActualSetupUpdater(this.ActualBlock, getX, getY, this.Direction);
+                    }
+                }
+            }
+
             Mouse.Capture(null);
             ActualBlock = null;
             BoolTombotKiir();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (missingX > 0)
+            {
+
+            }
         }
 
         /// <summary>

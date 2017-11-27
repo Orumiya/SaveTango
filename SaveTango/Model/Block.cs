@@ -2,7 +2,7 @@
 {
     using System.Windows.Controls;
 
-    public class Block
+    public class Block : Bindable
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Block"/> class.

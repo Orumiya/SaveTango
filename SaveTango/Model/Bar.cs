@@ -34,7 +34,16 @@
         public override int InitialCanvasTop { get => base.InitialCanvasTop; set => base.InitialCanvasTop = value; }
 
         public override int InitialCanvasLeft { get => base.InitialCanvasLeft; set => base.InitialCanvasLeft = value; }
-        public override int OnTableX { get => base.OnTableX; set => base.OnTableX = value; }
+        public override int OnTableX { 
+            get { return base.OnTableX; }
+            
+                set {
+                    base.OnTableX = value;
+                    OnPropertyChanged("OnTableX");
+                }
+            
+        }
+
         public override int OnTableY { get => base.OnTableY; set => base.OnTableY = value; }
 
 

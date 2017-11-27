@@ -223,7 +223,7 @@
                 actualBlock.OnTableX = stepX;
                 this.Board.Table[actualBlock.OnTableX, actualBlock.OnTableY] = FieldType.Taken;
 
-                if (direction == Direction.Up)
+                if (direction == Direction.Up || direction == Direction.Down)
                 {
                    if (actualBlock.BlockLength == 2)
                     {
@@ -233,18 +233,6 @@
                     {
                         this.Board.Table[actualBlock.OnTableX + 1, actualBlock.OnTableY] = FieldType.Taken;
                         this.Board.Table[actualBlock.OnTableX + 2, actualBlock.OnTableY] = FieldType.Taken;
-                    }
-                }
-                else if (direction == Direction.Down)
-                {
-                    if (actualBlock.BlockLength == 2)
-                    {
-                        this.Board.Table[actualBlock.OnTableX - 1, actualBlock.OnTableY] = FieldType.Taken;
-                    }
-                    else
-                    {
-                        this.Board.Table[actualBlock.OnTableX - 1, actualBlock.OnTableY] = FieldType.Taken;
-                        this.Board.Table[actualBlock.OnTableX - 2, actualBlock.OnTableY] = FieldType.Taken;
                     }
                 }
             }
