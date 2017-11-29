@@ -1,14 +1,16 @@
-﻿<Window x:Class="SaveTango.BoardWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SaveTango"
-        mc:Ignorable="d"
-        Title="BoardWindow" Height="768" Width="1024" Loaded="OnWindowLoaded">
-    <Window.Background>
+﻿<Page x:Class="SaveTango.BoardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SaveTango"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1024"
+      Title="BoardPage" Loaded="Page_Loaded">
+
+    <Page.Background>
         <ImageBrush Opacity="0.9" ImageSource="res/board_background1.jpg"></ImageBrush>
-    </Window.Background>
+    </Page.Background>
     <StackPanel Orientation="Vertical">
         <StackPanel Orientation="Horizontal" Height="117">
             <Grid Width="1024">
@@ -24,8 +26,7 @@
                 <Label Grid.Column="2" Content="Level x" HorizontalContentAlignment="Right" Height="50" FontSize="30"  />
                 <Label Grid.Column="3" Content="Time:"  HorizontalContentAlignment="Center" Height="50" FontSize="30"  />
                 <Label Grid.Column="4" Content="{Binding GamePlay.PlayerTime}"  Height="50" FontSize="30" />
-                <TextBox x:Name="TextboxTest" HorizontalAlignment="Left" Height="24" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="473" Grid.ColumnSpan="3"/>
-                <TextBox x:Name="TextboxTest2" HorizontalAlignment="Left" Height="97" Margin="98,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="385" Grid.ColumnSpan="3" Grid.Column="3" FontSize="8"/>
+                
 
             </Grid>
 
@@ -36,4 +37,4 @@
 
     </StackPanel>
 
-</Window>
+</Page>

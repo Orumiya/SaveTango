@@ -1,23 +1,36 @@
-﻿namespace SaveTango
-{
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Input;
-    using SaveTango.Model;
-    using SaveTango.ViewModel;
-    using System.Windows.Threading;
-    using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using SaveTango.Model;
+using SaveTango.ViewModel;
+using System.Windows.Threading;
+using System;
 
+namespace SaveTango
+{
     /// <summary>
-    /// Interaction logic for Board.xaml
+    /// Interaction logic for BoardPage.xaml
     /// </summary>
-    public partial class BoardWindow : Window
+    public partial class BoardPage : Page
     {
-        public BoardWindow()
+        public BoardPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             this.Gameplay = new GamePlay();
-            TextboxTest.Text = Gameplay.LevelSetup[0].OnTableX.ToString();
         }
 
         private BoardWindowViewModel bwVM;
@@ -40,7 +53,7 @@
 
         private GamePlay Gameplay { get; set; }
 
-        private Block ActualBlock { get; set; }
+        private Model.Block ActualBlock { get; set; }
 
         private int MinLimitLeftPixel { get; set; }
 
@@ -56,29 +69,7 @@
 
         private Tango tango;
 
-        /// <summary>
-        /// Az ablak betöltődésekor lefutó metódus, ami felteszi a grafikus felületre a setupnak megfelelően a Blockkokat, ill.
-        /// feliratkoztat a Mouse metódusokra
-        /// </summary>
-        /// <param name="sender"> az OnWindowLoaded metódus object típusú paramétere </param>
-        /// <param name="e">az OnWindowLoaded metódus RoutedEventArgs típusú paramétere</param>
-        private void OnWindowLoaded(object sender, RoutedEventArgs e)
-        {
-            this.bwVM = new BoardWindowViewModel();
-            this.DataContext = this.bwVM;
-            for (int i = 0; i < this.bwVM.GamePlay.LevelSetup.Count; i++)
-            {
-                Image img = this.bwVM.GamePlay.LevelSetup[i].BlockImage;
-                img.Name = "blockimage" + i.ToString();
-                this.RegisterName(img.Name, img);
-                Canvas.SetTop(img, this.bwVM.GamePlay.LevelSetup[i].OnTableX * 100);
-                Canvas.SetLeft(img, this.bwVM.GamePlay.LevelSetup[i].OnTableY * 100);
-                img.MouseDown += this.OnMouseDown;
-                img.MouseUp += this.OnMouseUp;
-                img.MouseMove += this.OnMouseMove;
-                this.boardCanvas.Children.Add(img);
-            }
-        }
+       
 
         /// <summary>
         /// a tábláról érkező egérkattintás metódusa:
@@ -371,7 +362,7 @@
             return directionVertical;
         }
 
-        
+
 
         public void BoolTombotKiir()
         {
@@ -384,10 +375,31 @@
                 }
                 tomb += '\n';
             }
-            TextboxTest2.Text = tomb;
-            //tesztszoveg = "balra: " + i;
-            //TextboxTest.Text = tesztszoveg;
+        }
 
+        /// <summary>
+        /// Az ablak betöltődésekor lefutó metódus, ami felteszi a grafikus felületre a setupnak megfelelően a Blockkokat, ill.
+        /// feliratkoztat a Mouse metódusokra
+        /// </summary>
+        /// <param name="sender"> az OnWindowLoaded metódus object típusú paramétere </param>
+        /// <param name="e">az OnWindowLoaded metódus RoutedEventArgs típusú paramétere</param>
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.bwVM = new BoardWindowViewModel();
+            this.DataContext = this.bwVM;
+            for (int i = 0; i < this.bwVM.GamePlay.LevelSetup.Count; i++)
+            {
+                Image img = this.bwVM.GamePlay.LevelSetup[i].BlockImage;
+                img.Name = "blockimage" + i.ToString();
+                this.RegisterName(img.Name, img);
+                Canvas.SetTop(img, this.bwVM.GamePlay.LevelSetup[i].OnTableX * 100);
+                Canvas.SetLeft(img, this.bwVM.GamePlay.LevelSetup[i].OnTableY * 100);
+                img.MouseDown += this.OnMouseDown;
+                img.MouseUp += this.OnMouseUp;
+                img.MouseMove += this.OnMouseMove;
+                this.boardCanvas.Children.Add(img);
+            }
         }
     }
 }

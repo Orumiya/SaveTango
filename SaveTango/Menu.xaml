@@ -1,0 +1,30 @@
+﻿<Page x:Class="SaveTango.Menu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SaveTango"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1024"
+      Title="Menu" >
+
+    <Page.Background>
+        <ImageBrush Opacity="0.8" ImageSource="res/main_backround.jpg"></ImageBrush>
+    </Page.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="button_main_newgame" Content="New game"  HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="200" Height="60" Grid.Row="1" FontWeight="Bold"  FontSize="28" Click="ButtonClick_main_newgame"/>
+        <Button x:Name="button_main_highscores" Content="High scores"  HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="200" Height="60" Grid.Row="2" FontWeight="Bold" FontSize="28"/>
+        <Button x:Name="button_main_settings" Content="Settings"  HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="200" Height="60" Grid.Row="3" FontWeight="Bold" FontSize="28"/>
+        <Button x:Name="button_main_exit" Content="Exit" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="200" Height="60" Grid.Row="4" FontWeight="Bold" FontSize="28"/>
+
+    </Grid>
+</Page>

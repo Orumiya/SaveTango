@@ -1,45 +1,21 @@
-﻿using SaveTango.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-namespace SaveTango
+﻿namespace SaveTango
 {
+    using System.Windows;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {  
-
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainWindow"/> class.
+        /// A főmenü page-t indítja
+        /// </summary>
         public MainWindow()
         {
-            InitializeComponent();
-        }
-
-
-        /// <summary>
-        /// A gomb a szintválasztó ablakot nyitja oly módon, hogy az a main window ablakban nyílik meg.
-        /// </summary>
-        /// <param name="sender">a ButtonClick_main_newgamen metódus object típusú paramétere (automatikus)</param>
-        /// <param name="e">a ButtonClick_main_newgame metódus MouseButtonEventArgs típusú paramétere (automatikus)</param>
-        private void ButtonClick_main_newgame(object sender, RoutedEventArgs e)
-        {
-            LevelSelection lvlSelWindow = new LevelSelection();
-            lvlSelWindow.Owner = Application.Current.MainWindow;
-            lvlSelWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            lvlSelWindow.Show();
-            //this.Close();
+            this.InitializeComponent();
+            Menu page1 = new Menu(this.mainFrame);
+            this.mainFrame.Content = page1;
         }
     }
 }
