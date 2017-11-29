@@ -18,7 +18,7 @@ namespace SaveTango.Model
         {
             if (this.PropertyChanged != null)
             {
-                this.PropertyChanged(propertyname, new PropertyChangedEventArgs("propertyname"));
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
             }
         }
     }

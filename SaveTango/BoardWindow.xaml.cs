@@ -52,6 +52,10 @@
 
         private Direction Direction { get; set; }
 
+        private Image actualImage;
+
+        private Tango tango;
+
         /// <summary>
         /// Az ablak betöltődésekor lefutó metódus, ami felteszi a grafikus felületre a setupnak megfelelően a Blockkokat, ill.
         /// feliratkoztat a Mouse metódusokra
@@ -190,9 +194,13 @@
         /// <param name="e">az OnMouseUp metódus MouseButtonEventArgs típusú paramétere (automatikus)</param>
         private void OnMouseUp(object sender, MouseButtonEventArgs e)
         {
+            timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 20);
+            timer.Tick += Timer_Tick;
             this.pressed = false;
             if (sender is Image)
             {
+                this.actualImage = (Image)sender;
                 int gx = (int)Canvas.GetTop((Image)sender);
                 int gy = (int)Canvas.GetLeft((Image)sender);
                 int getX = 0;
@@ -218,31 +226,88 @@
                     getY = (int)Canvas.GetLeft((Image)sender) / 100;
                     missingY = (gy % 100) * (-1);
                 }
-                string tesztszoveg = "gx " + gx + "getX "+ getX + "missingX"+ missingX +"gy" + gy + "getY" + getY + "missingY"+missingY;
-                TextboxTest.Text = tesztszoveg;
+
                 // itt mindig a Block InitialX- és InitialY elemét kell kapnia, különben exceptiont dob
                 if (this.ActualBlock != null)
                 {
+                    this.timer.Start();
                     if (getX != this.ActualBlock.OnTableX || getY != this.ActualBlock.OnTableY)
                     {
-                        timer = new DispatcherTimer();
-                        timer.Interval = new TimeSpan(0, 0, 0, 0, 20);
-                        //timer.Tick += Timer_Tick;
                         this.Gameplay.ActualSetupUpdater(this.ActualBlock, getX, getY, this.Direction);
+                        bwVM.MoveCounter();
+
                     }
                 }
             }
 
             Mouse.Capture(null);
             ActualBlock = null;
+
+            Gameplay.DoesWeHaveAWinner();
+            if (this.Gameplay.IsTangoSaved)
+            {
+                MessageBox.Show("nyertél");
+            }
             BoolTombotKiir();
+
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (missingX > 0)
+            // lefelé
+            if (this.missingX > 0)
             {
+                for (int i = 0; i < this.missingX; i++)
+                {
+                    double top = Canvas.GetTop(this.actualImage) + 1;
+                    Canvas.SetTop(this.actualImage, top);
+                }
 
+                missingX = 0;
+                missingY = 0;
+                this.timer.Stop();
+            }
+
+            // felfelé
+            else if (this.missingX < 0)
+            {
+                for (int i = 0; i > this.missingX; i--)
+                {
+                    double top = Canvas.GetTop(this.actualImage) - 1;
+                    Canvas.SetTop(this.actualImage, top);
+                }
+
+                missingX = 0;
+                missingY = 0;
+                this.timer.Stop();
+            }
+
+            // jobbra
+            else if (this.missingY > 0)
+            {
+                for (int i = 0; i < this.missingY; i++)
+                {
+                    double left = Canvas.GetLeft(this.actualImage) + 1;
+                    Canvas.SetLeft(this.actualImage, left);
+                }
+
+                missingX = 0;
+                missingY = 0;
+                this.timer.Stop();
+            }
+
+            // balra
+            else if (this.missingY < 0)
+            {
+                for (int i = 0; i > this.missingY; i--)
+                {
+                    double left = Canvas.GetLeft(this.actualImage) - 1;
+                    Canvas.SetLeft(this.actualImage, left);
+                }
+
+                missingX = 0;
+                missingY = 0;
+                this.timer.Stop();
             }
         }
 
@@ -320,7 +385,8 @@
                 tomb += '\n';
             }
             TextboxTest2.Text = tomb;
-
+            //tesztszoveg = "balra: " + i;
+            //TextboxTest.Text = tesztszoveg;
 
         }
     }

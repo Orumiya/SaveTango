@@ -19,7 +19,6 @@ namespace SaveTango.Model
             this.BlockImage = this.GetMeTheBestTangoPicture();
             this.OnTableY = 0; // oszlop
             this.OnTableX = 2; // sor
-            this.IsSaved = false;
         }
 
         /// <summary>
@@ -55,10 +54,7 @@ namespace SaveTango.Model
             img.Source = new BitmapImage(uri);
             return img;
         }
-
-        public bool IsSaved { get; set; }
         
-
         public bool IsTangoSaved()
         {
             if (this.OnTableX == 2 && this.OnTableY == 4)

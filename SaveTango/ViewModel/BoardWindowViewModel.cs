@@ -11,19 +11,37 @@ using System.Windows.Media.Imaging;
 
 namespace SaveTango.ViewModel
 {
-    public class BoardWindowViewModel
+    public class BoardWindowViewModel : Bindable
     {
         
 
         public GamePlay GamePlay { get; set; }
 
-        
+        /// <summary>
+        /// a játékos által elhúzott blokkok száma
+        /// </summary>
+        private int moves;
+        public int Moves
+        {
+            get { return this.moves; }
+
+            set
+            {
+                this.moves = value;
+                OnPropertyChanged("moves");
+            }
+        }
 
         public BoardWindowViewModel()
         {
             this.GamePlay = new GamePlay();
+            this.Moves = 0;
         }
 
+        public void MoveCounter()
+        {
+            this.Moves++;
+        }
 
     }
 }

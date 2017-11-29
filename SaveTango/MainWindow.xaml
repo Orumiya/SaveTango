@@ -25,4 +25,5 @@
         <Button x:Name="button_main_exit" Content="Exit" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="200" Height="60" Grid.Row="4" FontWeight="Bold" FontSize="28"/>
 
     </Grid>
+    
 </Window>

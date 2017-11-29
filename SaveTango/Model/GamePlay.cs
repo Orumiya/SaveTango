@@ -34,10 +34,12 @@
             };
             this.MakeADictionary();
             this.TheCollisionTableCreator();
+            this.IsTangoSaved = false;
             //this.StopwatchTimer();
             
         }
 
+        public bool IsTangoSaved { get; set; }
         public Board Board { get; set; }
         
         /// <summary>
@@ -67,20 +69,6 @@
             }
         }
 
-        /// <summary>
-        /// a játékos által elhúzott blokkok száma
-        /// </summary>
-        private int moves;
-
-        public int Moves
-        {
-            get { return this.moves; }
-
-            set { this.moves = value;
-                OnPropertyChanged("Moves");
-            }
-        }
-
         public int MinLimitLeft { get; set; }
 
         public int MaxLimitRight { get; set; }
@@ -95,6 +83,15 @@
         {
             Block block = this.imageBlockDictionary[image];
             return block;
+        }
+
+        public void DoesWeHaveAWinner()
+        {
+            if (this.LevelSetup[this.LevelSetup.Count - 1] is Tango)
+            {
+                Tango tango = (Tango)this.LevelSetup[this.LevelSetup.Count - 1];
+                this.IsTangoSaved = tango.IsTangoSaved();
+            }
         }
 
         /// <summary>
@@ -221,6 +218,11 @@
                 }
 
                 actualBlock.OnTableX = stepX;
+                if (actualBlock is Tango)
+                {
+                    this.LevelSetup[this.LevelSetup.Count - 1].OnTableX = stepX;
+                }
+
                 this.Board.Table[actualBlock.OnTableX, actualBlock.OnTableY] = FieldType.Taken;
 
                 if (direction == Direction.Up || direction == Direction.Down)
@@ -252,6 +254,10 @@
                     }
 
                     actualBlock.OnTableY = stepY;
+                    if (actualBlock is Tango)
+                    {
+                        this.LevelSetup[this.LevelSetup.Count - 1].OnTableY = stepY;
+                    }
                     this.Board.Table[actualBlock.OnTableX, actualBlock.OnTableY] = FieldType.Taken;
                     if (actualBlock.BlockLength == 2)
                     {
@@ -318,7 +324,7 @@
                 }
             }
         }
-
+        
         //public void StopwatchTimer() {
         //    Stopwatch stopWatch = new Stopwatch();
         //    stopWatch.Start();

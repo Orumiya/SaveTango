@@ -20,12 +20,12 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="1" Content="Moves:"  Height="50" FontSize="30" Margin="10,0,0,0" />
+                <Label Grid.Column="1"  ContentStringFormat="Moves:{0}" Content="{Binding Moves}"  Height="50" FontSize="30" Margin="10,0,0,0" />
                 <Label Grid.Column="2" Content="Level x" HorizontalContentAlignment="Right" Height="50" FontSize="30"  />
                 <Label Grid.Column="3" Content="Time:"  HorizontalContentAlignment="Center" Height="50" FontSize="30"  />
                 <Label Grid.Column="4" Content="{Binding GamePlay.PlayerTime}"  Height="50" FontSize="30" />
-                <TextBox x:Name="TextboxTest" HorizontalAlignment="Left" Height="97" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding GamePlay.LevelSetup[1].OnTableX}" VerticalAlignment="Top" Width="473" Grid.ColumnSpan="3"/>
-                <TextBox x:Name="TextboxTest2" HorizontalAlignment="Left" Height="97" Margin="98,10,0,0" TextWrapping="Wrap" Text="{Binding GamePlay.LevelSetup[1].OnTableX}" VerticalAlignment="Top" Width="385" Grid.ColumnSpan="3" Grid.Column="3" FontSize="8"/>
+                <TextBox x:Name="TextboxTest" HorizontalAlignment="Left" Height="24" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="473" Grid.ColumnSpan="3"/>
+                <TextBox x:Name="TextboxTest2" HorizontalAlignment="Left" Height="97" Margin="98,10,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="385" Grid.ColumnSpan="3" Grid.Column="3" FontSize="8"/>
 
             </Grid>
 
