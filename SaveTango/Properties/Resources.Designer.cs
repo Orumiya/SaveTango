@@ -71,6 +71,77 @@ namespace SaveTango.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to *01*
+        ///f,3,0,1
+        ///t,3,0,4
+        ///t,2,1,5
+        ///t,2,2,2
+        ///f,2,3,3
+        ///t,3,3,0
+        ///t,2,4,1
+        ///f,3,4,3
+        ///T
+        ///*02*
+        ///t,3,0,2
+        ///f,3,0,3
+        ///f,2,3,2
+        ///t,2,3,4
+        ///t,3,3,5
+        ///t,2,4,1
+        ///f,2,4,2
+        ///f,3,5,2
+        ///T
+        ///*03*
+        ///t,2,0,4
+        ///t,3,0,5
+        ///t,2,3,2
+        ///t,3,2,3
+        ///t,2,4,1
+        ///f,2,3,4
+        ///f,2,4,4
+        ///f,3,5,2
+        ///T
+        ///*04*
+        ///t,2,0,0
+        ///t,3,0,2
+        ///t,2,0,3
+        ///f,2,0,4
+        ///f,2,1,4
+        ///t,2,3,0
+        ///f,2,5,0
+        ///f,3,3,1
+        ///t,3,2,5
+        ///T
+        ///*05*
+        ///t,2,0,0
+        ///t,2,0,1
+        ///f,3,0,2
+        ///t,2,0,5
+        ///t,3,1,2
+        ///t,2,2,3
+        ///t,2,1,4
+        ///f,2,3,4
+        ///f,2,4,1
+        ///f,2,5,0
+        ///f,2,5,2
+        ///t,2,4,4
+        ///T
+        ///*06*
+        ///t,2,0,1
+        ///f,2,0,2
+        ///t,2,0,4
+        ///t,2,2,2
+        ///t,3,1,3
+        ///f,2,3,4
+        ///f, [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string levelsetup {
+            get {
+                return ResourceManager.GetString("levelsetup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap main_backround {

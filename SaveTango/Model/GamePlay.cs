@@ -27,20 +27,8 @@
         }
 
         public bool IsTangoSaved { get; set; }
-        public Board Board { get; set; }
-        
-        /// <summary>
-        /// játékos idejét tároló változó
-        /// </summary>
-        private TimeSpan playerTime;
 
-        public TimeSpan PlayerTime
-        {
-            get { return playerTime; }
-            set { playerTime = value;
-                  OnPropertyChanged("PlayerTime");
-            }
-        }
+        public Board Board { get; set; }
 
         /// <summary>
         /// a kiválasztott játék felállását tartalmazó gyűjtemény
@@ -260,7 +248,7 @@
         }
 
         /// <summary>
-        /// 
+        /// összepárosítja az Image-t a Block-kal
         /// </summary>
         private void MakeADictionary()
         {
@@ -314,15 +302,20 @@
 
         private void ReadTheBoardSetup(int level)
         {
-            string line = "";
+            string line = string.Empty;
+            string _filePath = Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
+            _filePath = Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName;
+            _filePath += @"\levelsetup.txt";
+
             try
             {
-                using (StreamReader sr = new StreamReader("levelsetup.txt"))
+                using (StreamReader sr = new StreamReader(_filePath))
                 {
                     line += sr.ReadToEnd();
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            { }
             string[] levelsetuptext = line.Split('\n');
             int i = 0;
             while (i < levelsetuptext.Length)
