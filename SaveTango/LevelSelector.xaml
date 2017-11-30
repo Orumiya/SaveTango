@@ -30,7 +30,8 @@
             <ColumnDefinition Width="14*"/>
         </Grid.ColumnDefinitions>
         <Grid.Resources>
-            <ImageBrush x:Key="AddButtonImage" ImageSource="res/1button.PNG" Stretch="Uniform"/>
+            <ImageBrush x:Key="AddButtonImage" ImageSource="res/1button.PNG" Stretch="Uniform" /> 
+
         </Grid.Resources>
         <Button x:Name="BackToMS" Margin="0" Width="70" Height="60" HorizontalAlignment="Center" Background="Transparent" Click="BackToMS_Click">
             <StackPanel Opacity="1">
@@ -77,6 +78,16 @@
 
             </StackPanel>
         </StackPanel>
+
+        <StackPanel Grid.Column="5" Grid.Row="0">
+            <Image Source="res/easy.png"></Image>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top" Grid.Column="5" Grid.Row="1" >
+            <Image Source="res/arrow2.png" Height="100" Width="130"></Image>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="2">
+            <Image Source="res/good.png"></Image>
+        </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="2">
             <Button Name="button_level5" Content="5"  FontWeight="Bold" FontSize="50"
                 HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" Click="OnSelectLevelClick" Background="{DynamicResource AddButtonImage}"/>
@@ -116,6 +127,12 @@
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star83" Margin="11,0,0,0"/>
 
             </StackPanel>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" Grid.Column="0" Grid.Row="3">
+            <Image Source="res/hard.png"></Image>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="4">
+            <Image Source="res/arrow1.png"></Image>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="3" >
             <Button Name="button_level9" Content="9" FontWeight="Bold" FontSize="50"
@@ -189,7 +206,7 @@
         </StackPanel>
         <StackPanel Grid.Column="4" Grid.Row="4">
             <Button Name="button_level16" Content="16"  FontWeight="Bold" FontSize="50"
-                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" Click="OnSelectLevelClick" Background="{DynamicResource AddButtonImage}"/>
+                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" Click="OnSelectLevelClick" Background="{DynamicResource AddButtonImage}" FocusVisualStyle="{DynamicResource FocusButtonImage}" />
             <StackPanel Orientation="Horizontal">
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star161" Margin="26,0,0,0"/>
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star162" Margin="11,0,0,0"/>
