@@ -26,12 +26,23 @@ namespace SaveTango
         /// <summary>
         /// a játékválasztó page-t indítja a gomb metódusa
         /// </summary>
-        /// <param name="sender"> </param>
-        /// <param name="e"> </param>
+        /// <param name="sender"> sender paraméter</param>
+        /// <param name="e">RoutedEventArgs típusú paraméter</param>
         private void ButtonClick_main_newgame(object sender, RoutedEventArgs e)
         {
             LevelSelector levelSel = new LevelSelector(this.mainFrame);
             this.mainFrame.Content = levelSel;
+        }
+
+        /// <summary>
+        /// az Exit gomb metódusa bezárja a programot
+        /// </summary>
+        /// <param name="sender">sender paraméter</param>
+        /// <param name="e">RoutedEventArgs típusú paraméter</param>
+        private void Button_main_exit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+            Application.Current.Shutdown();
         }
     }
 }

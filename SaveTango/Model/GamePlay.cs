@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Diagnostics;
+    using System.IO;
     using System.Threading;
     using System.Windows.Controls;
 
@@ -17,26 +17,13 @@
 
     public class GamePlay : Bindable
     {
-        public GamePlay()
+        public GamePlay(int level)
         {
             this.Board = new Board();
-            this.levelSetup = new ObservableCollection<Block> {
-                new Bar(true, 2, 0, 0),
-                new Bar(true, 2, 3, 0),
-                new Bar(true, 2, 0, 3),
-                new Bar(true, 3, 0, 2),
-                new Bar(true, 3, 2, 5),
-                new Bar(false, 2, 0, 4),
-                new Bar(false, 2, 1, 4),
-                new Bar(false, 3, 3, 1),
-                new Bar(false, 2, 5, 1),
-                new Tango()
-            };
+            this.ReadTheBoardSetup(level);
             this.MakeADictionary();
             this.TheCollisionTableCreator();
             this.IsTangoSaved = false;
-            //this.StopwatchTimer();
-            
         }
 
         public bool IsTangoSaved { get; set; }
@@ -324,18 +311,64 @@
                 }
             }
         }
-        
-        //public void StopwatchTimer() {
-        //    Stopwatch stopWatch = new Stopwatch();
-        //    stopWatch.Start();
-        //    Thread.Sleep(1000);
-        //    // Get the elapsed time as a TimeSpan value.
-        //    this.playerTime = stopWatch.Elapsed;
 
-        //    // Format and display the TimeSpan value.
-        //    string elapsedTime = string.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-        //        playerTime.Hours, playerTime.Minutes, playerTime.Seconds,
-        //        playerTime.Milliseconds / 10);  
-        //}
+        private void ReadTheBoardSetup(int level)
+        {
+            string line = "";
+            try
+            {
+                using (StreamReader sr = new StreamReader("levelsetup.txt"))
+                {
+                    line += sr.ReadToEnd();
+                }
+            }
+            catch (Exception ex) { }
+            string[] levelsetuptext = line.Split('\n');
+            int i = 0;
+            while (i < levelsetuptext.Length)
+            {
+                if (levelsetuptext[i][0] == '*')
+                {
+                    string szam = levelsetuptext[i][1].ToString() + levelsetuptext[i][2].ToString();
+                    int szamLev = int.Parse(szam);
+                    if (level == szamLev)
+                    {
+                        break;
+                    }
+                }
+
+                i++;
+            }
+
+            // el kell érni az első sort a level fejléc után
+            i++;
+            this.levelSetup = new ObservableCollection<Block>();
+            while (i < levelsetuptext.Length && levelsetuptext[i][0] != '*')
+            {
+                if (!levelsetuptext[i][0].Equals('T'))
+                {
+                    this.levelSetup.Add(new Bar(this.CharToBool(levelsetuptext[i][0]), int.Parse(levelsetuptext[i][2].ToString()), int.Parse(levelsetuptext[i][4].ToString()), int.Parse(levelsetuptext[i][6].ToString())));
+                }
+                else
+                {
+                    this.levelSetup.Add(new Tango());
+                }
+
+                i++;
+            }
+        }
+
+        private bool CharToBool(char fort)
+        {
+            switch (fort)
+            {
+                case 't': return true;
+                    break;
+                case 'f': return false;
+                    break;
+                default: return false;
+                    break;
+            }
+        }
     }
 }

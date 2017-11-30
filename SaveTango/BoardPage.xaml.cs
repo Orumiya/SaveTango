@@ -1,24 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using SaveTango.Model;
 using SaveTango.ViewModel;
 using System.Windows.Threading;
-using System;
 
 namespace SaveTango
 {
@@ -27,12 +13,9 @@ namespace SaveTango
     /// </summary>
     public partial class BoardPage : Page
     {
-        public BoardPage()
-        {
-            InitializeComponent();
-            this.Gameplay = new GamePlay();
-        }
-
+        /// <summary>
+        /// hivatkozást tárol a hozzá tartozó ViewModelre
+        /// </summary>
         private BoardWindowViewModel bwVM;
 
         /// <summary>
@@ -40,20 +23,52 @@ namespace SaveTango
         /// </summary>
         private bool pressed = false;
 
-        private DispatcherTimer timer;
-
+        /// <summary>
+        /// egy aktuálisan megfogott és mozgatott Block esetében eltárolja, 
+        /// hogyha 2 mező között elengedték valahol, mennyi pixel hiányzik,
+        /// hogy elérje a megfelelő pozícióját a mezőben
+        /// </summary>
         private int missingX = 0;
 
+        /// <summary>
+        /// egy aktuálisan megfogott és mozgatott Block esetében eltárolja, 
+        /// hogyha 2 mező között elengedték valahol, mennyi pixel hiányzik,
+        /// hogy elérje a megfelelő pozícióját a mezőben
+        /// </summary>
         private int missingY = 0;
 
         /// <summary>
-        /// hol kattintottam le az egeret az Image-n belül? mindig lekérhető az x és y propertyje --> pl Image-n belül 7 pixellel lejjebb
+        /// hol kattintottam le az egeret az Image-n belül? mindig lekérhető 
+        /// az x és y propertyje --> pl Image-n belül 7 pixellel lejjebb
         /// </summary>
         private Point clickedPoint;
 
+        /// <summary>
+        /// timer a Blockkok automatikus csúsztatásához
+        /// </summary>
+        private DispatcherTimer timer;
+
+        public int level;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BoardPage"/> class.
+        /// </summary>
+        public BoardPage(int level)
+        {
+            this.InitializeComponent();
+            this.level = level;
+            this.Gameplay = new GamePlay(level);
+        }
+
+        /// <summary>
+        /// hivatkozást tárol a Gameplay osztályra
+        /// </summary>
         private GamePlay Gameplay { get; set; }
 
-        private Model.Block ActualBlock { get; set; }
+        /// <summary>
+        /// hivatkozást tárol az épp aktuálisan megfogott elemre
+        /// </summary>
+        private Block ActualBlock { get; set; }
 
         private int MinLimitLeftPixel { get; set; }
 
@@ -68,8 +83,6 @@ namespace SaveTango
         private Image actualImage;
 
         private Tango tango;
-
-       
 
         /// <summary>
         /// a tábláról érkező egérkattintás metódusa:
@@ -179,15 +192,20 @@ namespace SaveTango
         /// <summary>
         /// az egér elengedése által indított metódus:
         /// az egér gombja fel van engedve,
-        /// elengedi a fogott Image-t
+        /// elengedi a fogott Image-t,
+        /// ha az elengedett Block 2 mező között van, akkor Timer-t indít, hogy a helyére csúsztassa
+        /// a táblában átírja a foglalt és szabad helyeket
+        /// megnézi, hogy Tango megmenekült-e
         /// </summary>
         /// <param name="sender">az OnMouseUp metódus object típusú paramétere (automatikus)</param>
         /// <param name="e">az OnMouseUp metódus MouseButtonEventArgs típusú paramétere (automatikus)</param>
         private void OnMouseUp(object sender, MouseButtonEventArgs e)
         {
-            timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 20);
-            timer.Tick += Timer_Tick;
+            this.timer = new DispatcherTimer
+            {
+                Interval = new TimeSpan(0, 0, 0, 0, 20)
+            };
+            this.timer.Tick += this.Timer_Tick;
             this.pressed = false;
             if (sender is Image)
             {
@@ -199,23 +217,23 @@ namespace SaveTango
                 if (gx % 100 > 50)
                 {
                     getX = ((int)Canvas.GetTop((Image)sender) / 100) + 1;
-                    missingX = 100 - (gx % 100);
+                    this.missingX = 100 - (gx % 100);
                 }
                 else
                 {
                     getX = (int)Canvas.GetTop((Image)sender) / 100;
-                    missingX = (gx % 100) * (-1);
+                    this.missingX = (gx % 100) * (-1);
                 }
 
                 if (gy % 100 > 50)
                 {
                     getY = ((int)Canvas.GetLeft((Image)sender) / 100) + 1;
-                    missingY = 100 - (gy % 100);
+                    this.missingY = 100 - (gy % 100);
                 }
                 else
                 {
                     getY = (int)Canvas.GetLeft((Image)sender) / 100;
-                    missingY = (gy % 100) * (-1);
+                    this.missingY = (gy % 100) * (-1);
                 }
 
                 // itt mindig a Block InitialX- és InitialY elemét kell kapnia, különben exceptiont dob
@@ -225,24 +243,23 @@ namespace SaveTango
                     if (getX != this.ActualBlock.OnTableX || getY != this.ActualBlock.OnTableY)
                     {
                         this.Gameplay.ActualSetupUpdater(this.ActualBlock, getX, getY, this.Direction);
-                        bwVM.MoveCounter();
+                        this.bwVM.MoveCounter();
 
                     }
                 }
             }
 
             Mouse.Capture(null);
-            ActualBlock = null;
+            this.ActualBlock = null;
 
-            Gameplay.DoesWeHaveAWinner();
-            if (this.Gameplay.IsTangoSaved)
-            {
-                MessageBox.Show("nyertél");
-            }
-            BoolTombotKiir();
-
+            this.GameEnd();
         }
 
+        /// <summary>
+        /// A metódus végzi a 2 mező között hagyott Blockkok helyére csúsztatását
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Timer_Tick(object sender, EventArgs e)
         {
             // lefelé
@@ -254,8 +271,8 @@ namespace SaveTango
                     Canvas.SetTop(this.actualImage, top);
                 }
 
-                missingX = 0;
-                missingY = 0;
+                this.missingX = 0;
+                this.missingY = 0;
                 this.timer.Stop();
             }
 
@@ -268,8 +285,8 @@ namespace SaveTango
                     Canvas.SetTop(this.actualImage, top);
                 }
 
-                missingX = 0;
-                missingY = 0;
+                this.missingX = 0;
+                this.missingY = 0;
                 this.timer.Stop();
             }
 
@@ -282,8 +299,8 @@ namespace SaveTango
                     Canvas.SetLeft(this.actualImage, left);
                 }
 
-                missingX = 0;
-                missingY = 0;
+                this.missingX = 0;
+                this.missingY = 0;
                 this.timer.Stop();
             }
 
@@ -296,8 +313,8 @@ namespace SaveTango
                     Canvas.SetLeft(this.actualImage, left);
                 }
 
-                missingX = 0;
-                missingY = 0;
+                this.missingX = 0;
+                this.missingY = 0;
                 this.timer.Stop();
             }
         }
@@ -362,31 +379,15 @@ namespace SaveTango
             return directionVertical;
         }
 
-
-
-        public void BoolTombotKiir()
-        {
-            string tomb = "";
-            for (int i = 0; i < 6; i++)
-            {
-                for (int j = 0; j < 6; j++)
-                {
-                    tomb += Gameplay.Board.Table[i, j] + "\t";
-                }
-                tomb += '\n';
-            }
-        }
-
         /// <summary>
-        /// Az ablak betöltődésekor lefutó metódus, ami felteszi a grafikus felületre a setupnak megfelelően a Blockkokat, ill.
+        /// A page betöltődésekor lefutó metódus, ami felteszi a grafikus felületre a setupnak megfelelően a Blockkokat, ill.
         /// feliratkoztat a Mouse metódusokra
         /// </summary>
-        /// <param name="sender"> az OnWindowLoaded metódus object típusú paramétere </param>
-        /// <param name="e">az OnWindowLoaded metódus RoutedEventArgs típusú paramétere</param>
-
+        /// <param name="sender"> a Page_Loaded metódus object típusú paramétere </param>
+        /// <param name="e">a Page_Loaded metódus RoutedEventArgs típusú paramétere</param>
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            this.bwVM = new BoardWindowViewModel();
+            this.bwVM = new BoardWindowViewModel(this.level);
             this.DataContext = this.bwVM;
             for (int i = 0; i < this.bwVM.GamePlay.LevelSetup.Count; i++)
             {
@@ -399,6 +400,33 @@ namespace SaveTango
                 img.MouseUp += this.OnMouseUp;
                 img.MouseMove += this.OnMouseMove;
                 this.boardCanvas.Children.Add(img);
+            }
+        }
+
+        /// <summary>
+        /// a játék nyerési feltétele az, hogy Tango elérje a kijáratot
+        /// </summary>
+        private void GameEnd()
+        {
+            this.Gameplay.DoesWeHaveAWinner();
+            if (this.Gameplay.IsTangoSaved)
+            {
+                this.bwVM.StopTimer();
+                MessageBox.Show("nyertél");
+            }
+        }
+
+        /// <summary>
+        /// a vissza gombbal a LevelSelector oldalra lehet visszalépni
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.NavigationService.CanGoBack)
+            {
+                this.Gameplay = null;
+                this.NavigationService.GoBack();
             }
         }
     }

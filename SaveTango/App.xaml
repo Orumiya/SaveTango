@@ -4,22 +4,6 @@
              xmlns:local="clr-namespace:SaveTango"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        
-            
-        
-       <LinearGradientBrush x:Key="ButtonColorBrush" StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Color="DarkGray" Offset="0" />
-            <GradientStop Color="#F7F3E3" Offset="0.5" />
-            <GradientStop Color="DarkGray" Offset="1" />
-        </LinearGradientBrush>
-
-        <Style TargetType="{x:Type Button}">
-            <Setter Property="Background" 
-      Value="{StaticResource ButtonColorBrush}" />
-            <Setter Property="Width" Value="90" />
-            <Setter Property="Margin" Value="10" />
-            <Setter Property="Foreground" Value="#6D2A00" /> 
-        </Style>
 
     </Application.Resources>
 </Application>

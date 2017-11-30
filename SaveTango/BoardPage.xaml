@@ -9,7 +9,7 @@
       Title="BoardPage" Loaded="Page_Loaded">
 
     <Page.Background>
-        <ImageBrush Opacity="0.9" ImageSource="res/board_background1.jpg"></ImageBrush>
+        <ImageBrush Opacity="0.9" Stretch="UniformToFill" ImageSource="res/board_background1.jpg"></ImageBrush>
     </Page.Background>
     <StackPanel Orientation="Vertical">
         <StackPanel Orientation="Horizontal" Height="117">
@@ -23,17 +23,23 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="1"  ContentStringFormat="Moves:{0}" Content="{Binding Moves}"  Height="50" FontSize="30" Margin="10,0,0,0" />
-                <Label Grid.Column="2" Content="Level x" HorizontalContentAlignment="Right" Height="50" FontSize="30"  />
-                <Label Grid.Column="3" Content="Time:"  HorizontalContentAlignment="Center" Height="50" FontSize="30"  />
-                <Label Grid.Column="4" Content="{Binding GamePlay.PlayerTime}"  Height="50" FontSize="30" />
+                <Label Grid.Column="2" ContentStringFormat="Level {0}" Content="{Binding Level}" HorizontalContentAlignment="Right" Height="50" FontSize="30"  />
+                <Label Grid.Column="4" ContentStringFormat="Time:{0}" Content="{Binding TimeElapsed}"  Height="50" FontSize="30" />
+                <Button x:Name="BackToLS" Margin="0" Width="70" Height="60" HorizontalAlignment="Center" Background="Transparent" Click="Back_Click">
+                    <StackPanel Opacity="1">
+                        <Image Source="res/arrowBack.png" />
+                    </StackPanel>
+                </Button>
                 
+
 
             </Grid>
 
         </StackPanel>
-        <Canvas Name="boardCanvas" Height="600" Width="600">
+        <Canvas Name="boardCanvas" Height="600" Width="600" Margin="212,0">
             <Image MouseDown="OnMouseDown" MouseUp="OnMouseUp" MouseMove="OnMouseMove"/>
         </Canvas>
+        
 
     </StackPanel>
 

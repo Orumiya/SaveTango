@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
+
 namespace SaveTango
 {
     /// <summary>
@@ -17,6 +13,7 @@ namespace SaveTango
         /// </summary>
         private Frame mainFrame;
 
+        public int level;
         /// <summary>
         /// Initializes a new instance of the <see cref="LevelSelector"/> class.
         /// </summary>
@@ -34,9 +31,19 @@ namespace SaveTango
         /// <param name="e"></param>
         private void OnSelectLevelClick(object sender, RoutedEventArgs e)
         {
-            BoardPage boardPage = new BoardPage();
+            Button btn = (Button)sender;
+            this.level = int.Parse(btn.Content.ToString());
+            BoardPage boardPage = new BoardPage(this.level);
             this.mainFrame.Content = boardPage;
 
+        }
+
+        private void BackToMS_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.NavigationService.CanGoBack)
+            {
+                this.NavigationService.GoBack();
+            }
         }
     }
 }

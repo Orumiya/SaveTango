@@ -9,7 +9,7 @@
       Title="LevelSelector" ShowsNavigationUI="False">
 
     <Page.Background>
-        <ImageBrush Opacity="0.8" ImageSource="res/main_backround.jpg"></ImageBrush>
+        <ImageBrush Opacity="0.8" ImageSource="res/main_backround2.jpg"></ImageBrush>
     </Page.Background>
     <Grid>
         <Grid.RowDefinitions>
@@ -29,8 +29,16 @@
             <ColumnDefinition Width="12*"/>
             <ColumnDefinition Width="14*"/>
         </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <ImageBrush x:Key="AddButtonImage" ImageSource="res/1button.PNG" Stretch="Uniform"/>
+        </Grid.Resources>
+        <Button x:Name="BackToMS" Margin="0" Width="70" Height="60" HorizontalAlignment="Center" Background="Transparent" Click="BackToMS_Click">
+            <StackPanel Opacity="1">
+                <Image Source="res/arrowBack.png" />
+            </StackPanel>
+        </Button>
         <StackPanel Grid.Column="1"  Grid.Row="1">
-            <Button Name="button_level1" Content="1"  FontWeight="Bold" FontSize="50"
+            <Button Name="button_level1" Content="1"  FontWeight="Bold" FontSize="50" Background="{StaticResource AddButtonImage}"
                 HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" Click="OnSelectLevelClick" />
             <StackPanel Orientation="Horizontal">
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star11" Margin="26,0,0,0"/>
@@ -41,7 +49,7 @@
         </StackPanel>
         <StackPanel Grid.Column="2" Grid.Row="1">
             <Button Name="button_level2" Content="2"  FontWeight="Bold" FontSize="50"
-                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" />
+                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" Click="OnSelectLevelClick" Background="{DynamicResource AddButtonImage}"/>
             <StackPanel Orientation="Horizontal">
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star21" Margin="26,0,0,0"/>
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star22" Margin="11,0,0,0"/>
@@ -51,7 +59,7 @@
         </StackPanel>
         <StackPanel Grid.Column="3" Grid.Row="1">
             <Button Name="button_level3" Content="3"  FontWeight="Bold" FontSize="50"
-                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" />
+                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" Click="OnSelectLevelClick" Background="{DynamicResource AddButtonImage}"/>
             <StackPanel Orientation="Horizontal">
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star31" Margin="26,0,0,0"/>
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star32" Margin="11,0,0,0"/>
@@ -61,7 +69,7 @@
         </StackPanel>
         <StackPanel Grid.Column="4" Grid.Row="1">
             <Button Name="button_level4" Content="4"  FontWeight="Bold" FontSize="50"
-                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" />
+                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" Click="OnSelectLevelClick" Background="{DynamicResource AddButtonImage}"/>
             <StackPanel Orientation="Horizontal">
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star41" Margin="26,0,0,0"/>
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star42" Margin="11,0,0,0"/>
@@ -71,7 +79,7 @@
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="2">
             <Button Name="button_level5" Content="5"  FontWeight="Bold" FontSize="50"
-                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" />
+                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" Click="OnSelectLevelClick" Background="{DynamicResource AddButtonImage}"/>
             <StackPanel Orientation="Horizontal">
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star51" Margin="26,0,0,0"/>
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star52" Margin="11,0,0,0"/>
@@ -81,7 +89,7 @@
         </StackPanel>
         <StackPanel Grid.Column="2" Grid.Row="2">
             <Button Name="button_level6" Content="6"  FontWeight="Bold" FontSize="50"
-                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" />
+                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" Click="OnSelectLevelClick" Background="{DynamicResource AddButtonImage}"/>
             <StackPanel Orientation="Horizontal">
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star61" Margin="26,0,0,0"/>
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star62" Margin="11,0,0,0"/>
@@ -91,7 +99,7 @@
         </StackPanel>
         <StackPanel Grid.Column="3" Grid.Row="2">
             <Button Name="button_level7" Content="7"  FontWeight="Bold" FontSize="50"
-                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" />
+                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" Click="OnSelectLevelClick" Background="{DynamicResource AddButtonImage}"/>
             <StackPanel Orientation="Horizontal">
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star71" Margin="26,0,0,0"/>
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star72" Margin="11,0,0,0"/>
@@ -101,7 +109,7 @@
         </StackPanel>
         <StackPanel Grid.Column="4" Grid.Row="2" >
             <Button Name="button_level8" Content="8" FontWeight="Bold" FontSize="50"
-                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" />
+                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" Click="OnSelectLevelClick" Background="{DynamicResource AddButtonImage}"/>
             <StackPanel Orientation="Horizontal">
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star81" Margin="26,0,0,0"/>
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star82" Margin="11,0,0,0"/>
@@ -111,7 +119,7 @@
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="3" >
             <Button Name="button_level9" Content="9" FontWeight="Bold" FontSize="50"
-                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" />
+                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" Click="OnSelectLevelClick" Background="{DynamicResource AddButtonImage}"/>
             <StackPanel Orientation="Horizontal">
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star91" Margin="26,0,0,0"/>
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star92" Margin="11,0,0,0"/>
@@ -121,7 +129,7 @@
         </StackPanel>
         <StackPanel Grid.Column="2" Grid.Row="3" >
             <Button Name="button_level10" Content="10" FontWeight="Bold" FontSize="50"
-                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" />
+                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" Click="OnSelectLevelClick" Background="{DynamicResource AddButtonImage}"/>
             <StackPanel Orientation="Horizontal">
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star101" Margin="26,0,0,0"/>
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star102" Margin="11,0,0,0"/>
@@ -131,7 +139,7 @@
         </StackPanel>
         <StackPanel Grid.Column="3" Grid.Row="3" >
             <Button Name="button_level11" Content="11" FontWeight="Bold" FontSize="50"
-                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" />
+                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" Click="OnSelectLevelClick" Background="{DynamicResource AddButtonImage}"/>
             <StackPanel Orientation="Horizontal">
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star111" Margin="26,0,0,0"/>
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star112" Margin="11,0,0,0"/>
@@ -141,7 +149,7 @@
         </StackPanel>
         <StackPanel Grid.Column="4" Grid.Row="3">
             <Button Name="button_level12" Content="12"  FontWeight="Bold" FontSize="50"
-                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" />
+                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" Click="OnSelectLevelClick" Background="{DynamicResource AddButtonImage}"/>
             <StackPanel Orientation="Horizontal">
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star121" Margin="26,0,0,0"/>
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star122" Margin="11,0,0,0"/>
@@ -151,7 +159,7 @@
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="4">
             <Button Name="button_level13" Content="13"  FontWeight="Bold" FontSize="50"
-                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" />
+                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" Click="OnSelectLevelClick" Background="{DynamicResource AddButtonImage}"/>
             <StackPanel Orientation="Horizontal">
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star131" Margin="26,0,0,0"/>
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star132" Margin="11,0,0,0"/>
@@ -161,7 +169,7 @@
         </StackPanel>
         <StackPanel Grid.Column="2" Grid.Row="4">
             <Button Name="button_level14" Content="14" FontWeight="Bold" FontSize="50"
-                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" />
+                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" Click="OnSelectLevelClick" Background="{DynamicResource AddButtonImage}"/>
             <StackPanel Orientation="Horizontal">
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star141" Margin="26,0,0,0"/>
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star142" Margin="11,0,0,0"/>
@@ -171,7 +179,7 @@
         </StackPanel>
         <StackPanel Grid.Column="3" Grid.Row="4">
             <Button Name="button_level15" Content="15"  FontWeight="Bold" FontSize="50"
-                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" />
+                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" Click="OnSelectLevelClick" Background="{DynamicResource AddButtonImage}"/>
             <StackPanel Orientation="Horizontal">
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star151" Margin="26,0,0,0"/>
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star152" Margin="11,0,0,0"/>
@@ -181,7 +189,7 @@
         </StackPanel>
         <StackPanel Grid.Column="4" Grid.Row="4">
             <Button Name="button_level16" Content="16"  FontWeight="Bold" FontSize="50"
-                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" />
+                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" Click="OnSelectLevelClick" Background="{DynamicResource AddButtonImage}"/>
             <StackPanel Orientation="Horizontal">
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star161" Margin="26,0,0,0"/>
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star162" Margin="11,0,0,0"/>
