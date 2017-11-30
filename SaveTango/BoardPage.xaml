@@ -23,7 +23,7 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="1"  ContentStringFormat="Moves:{0}" Content="{Binding Moves}"  Height="50" FontSize="30" Margin="10,0,0,0" />
-                <Label Grid.Column="2" ContentStringFormat="Level {0}" Content="{Binding Level}" HorizontalContentAlignment="Right" Height="50" FontSize="30"  />
+                <Label Grid.Column="2" ContentStringFormat="Level {0}" FontWeight="Bold" Content="{Binding Level}" HorizontalContentAlignment="Right" Height="50" FontSize="30"  />
                 <Label Grid.Column="4" ContentStringFormat="Time:{0}" Content="{Binding TimeElapsed}"  Height="50" FontSize="30" />
                 <Button x:Name="BackToLS" Margin="0" Width="70" Height="60" HorizontalAlignment="Center" Background="Transparent" Click="Back_Click">
                     <StackPanel Opacity="1">
