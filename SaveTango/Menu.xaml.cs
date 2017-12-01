@@ -44,5 +44,11 @@ namespace SaveTango
             Application.Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
             Application.Current.Shutdown();
         }
+
+        private void button_main_highscores_Click(object sender, RoutedEventArgs e)
+        {
+            Scores scores = new Scores(this.mainFrame);
+            this.mainFrame.Content = scores;
+        }
     }
 }

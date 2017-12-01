@@ -1,18 +1,8 @@
 ﻿using SaveTango.ViewModel;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SaveTango
@@ -34,6 +24,7 @@ namespace SaveTango
             this.mainFrame = mainFrame;
             this.epvm = new EndPageViewModel(level, gametime, moves);
             this.DataContext = this.epvm;
+            this.WriteTheScoresToFile();
         }
 
         public int Level { get; set; }
@@ -58,6 +49,32 @@ namespace SaveTango
         {
             BoardPage boardPage = new BoardPage(this.mainFrame, this.Level);
             this.mainFrame.Content = boardPage;
+        }
+
+        private void ScoresPage_Click(object sender, RoutedEventArgs e)
+        {
+            Scores scores = new Scores(this.mainFrame);
+            this.mainFrame.Content = scores;
+        }
+
+        private void Levelselector_Click(object sender, RoutedEventArgs e)
+        {
+            LevelSelector levelSel = new LevelSelector(this.mainFrame);
+            this.mainFrame.Content = levelSel;
+        }
+
+        private void WriteTheScoresToFile()
+        {
+            // Set a variable to the My Documents path.
+            string filePath = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+            filePath = Directory.GetParent(Directory.GetParent(filePath).FullName).FullName;
+            filePath += @"\scores.txt";
+
+            string text = this.Level.ToString() + "_" + this.Moves.ToString() + "_" + this.Gametime;
+            // Create a string array with the additional lines of text
+            string[] lines = { text };
+            // Append new lines of text to the file
+            File.AppendAllLines(filePath, lines);
         }
     }
 }

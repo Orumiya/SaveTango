@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
         <Image Source="res/main_logo.png"/>
         <Button x:Name="button_main_newgame" Content="New game" Background="{StaticResource AddButtonImageBrush}" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="200" Height="60" Grid.Row="1" FontWeight="Bold"  FontSize="28" Click="ButtonClick_main_newgame"/>
-        <Button x:Name="button_main_highscores" Content="High scores" Background="{StaticResource AddButtonImageBrush}" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="200" Height="60" Grid.Row="2" FontWeight="Bold" FontSize="28"/>
+        <Button x:Name="button_main_highscores" Content="High scores" Background="{StaticResource AddButtonImageBrush}" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="200" Height="60" Grid.Row="2" FontWeight="Bold" FontSize="28" Click="button_main_highscores_Click"/>
         <Button x:Name="button_main_exit" Content="Exit" Background="{StaticResource AddButtonImageBrush}" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Width="200" Height="60" Grid.Row="3" FontWeight="Bold" FontSize="28" Click="Button_main_exit_Click"/>
 
         

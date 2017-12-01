@@ -11,6 +11,24 @@
         <ImageBrush Opacity="0.8" ImageSource="res/main_backround2.jpg"></ImageBrush>
     </Page.Background>
     <Grid>
-        
+        <!--<ListBox>
+        <ListBox.Resources>
+                <BitmapImage x:Key="star" UriSource="res\star.png" />
+            </ListBox.Resources>
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                    <BitmapImage Source="{StaticResource star}"/>
+                    <TextBlock Text="{Binding HighScores}" />
+                </StackPanel>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+        </ListBox> -->
+        <StackPanel>
+            <Image Source="res\highscores.png" Height="150"/>
+            <ListBox x:Name="highscoreslist" ItemsSource="{Binding HighScores}" HorizontalAlignment="Center" Height="576" VerticalAlignment="Top" Width="368">
+                
+            </ListBox>
+        </StackPanel>
     </Grid>
 </Page>

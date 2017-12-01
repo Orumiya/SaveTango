@@ -402,7 +402,6 @@ namespace SaveTango
             {
                 Image img = this.bwVM.GamePlay.LevelSetup[i].BlockImage;
                 img.Name = "blockimage" + i.ToString();
-                //this.RegisterName(img.Name, img);
                 Canvas.SetTop(img, this.bwVM.GamePlay.LevelSetup[i].OnTableX * 100);
                 Canvas.SetLeft(img, this.bwVM.GamePlay.LevelSetup[i].OnTableY * 100);
                 img.MouseDown += this.OnMouseDown;

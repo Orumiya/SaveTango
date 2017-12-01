@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SaveTango.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,14 @@ namespace SaveTango
     /// </summary>
     public partial class Scores : Page
     {
-        public Scores()
+        Frame mainFrame;
+        public HighScoreViewModel hsvm;
+        public Scores(Frame mainFrame)
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.mainFrame = mainFrame;
+            hsvm = new HighScoreViewModel();
+            this.DataContext = this.hsvm;
         }
     }
 }
