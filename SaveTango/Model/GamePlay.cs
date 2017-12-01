@@ -300,6 +300,10 @@
             }
         }
 
+        /// <summary>
+        /// beolvassa a különböző pályákhoz tartozó setupokat
+        /// </summary>
+        /// <param name="level"></param>
         private void ReadTheBoardSetup(int level)
         {
             string line = string.Empty;

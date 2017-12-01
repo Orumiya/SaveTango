@@ -33,7 +33,7 @@ namespace SaveTango
         {
             Button btn = (Button)sender;
             this.level = int.Parse(btn.Content.ToString());
-            BoardPage boardPage = new BoardPage(this.level);
+            BoardPage boardPage = new BoardPage(mainFrame, this.level);
             this.mainFrame.Content = boardPage;
 
         }

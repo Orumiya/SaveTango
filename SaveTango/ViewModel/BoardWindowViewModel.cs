@@ -35,7 +35,7 @@ namespace SaveTango.ViewModel
         private string timeElapsed;
 
         /// <summary>
-        /// játékidő
+        /// játékidő string formátumban
         /// </summary>
         public string TimeElapsed
         {
@@ -52,8 +52,43 @@ namespace SaveTango.ViewModel
         }
 
         /// <summary>
+        /// játékidő
+        /// </summary>
+        private TimeSpan timeSpan;
+
+        public TimeSpan TimeSpan
+        {
+            get { return timeSpan; }
+            set
+            {
+                timeSpan = value;
+                OnPropertyChanged("timeSpan");
+            }
+        }
+
+        /// <summary>
+        /// eltelt játékidő
+        /// </summary>
+        private string endElapsedTime;
+
+        public string EndElapsedTime
+        {
+            get
+            {
+                return this.endElapsedTime;
+            }
+
+            set
+            {
+                this.endElapsedTime = value;
+                this.OnPropertyChanged("endElapsedTime");
+            }
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="BoardWindowViewModel"/> class.
         /// </summary>
+        /// <param name="level">kiválasztott pálya szintje</param>
         public BoardWindowViewModel(int level)
         {
             this.GamePlay = new GamePlay(level);
@@ -92,6 +127,21 @@ namespace SaveTango.ViewModel
             }
         }
 
+        private int movesSum;
+        public int MovesSum
+        {
+            get
+            {
+                return this.movesSum;
+            }
+
+            private set
+            {
+                this.movesSum = value;
+                this.OnPropertyChanged("movesSum");
+            }
+        }
+
         public void MoveCounter()
         {
             this.Moves++;
@@ -109,13 +159,15 @@ namespace SaveTango.ViewModel
 
         public void StopTimer()
         {
+            this.MovesSum = this.Moves;
+            this.EndElapsedTime = this.TimeElapsed;
             this.stopWatch.Stop();
             this.timer.Stop();
         }
 
         private void DispatcherTimerTick_(object sender, EventArgs e)
         {
-            TimeSpan timeSpan = this.stopWatch.Elapsed;
+            this.timeSpan = this.stopWatch.Elapsed;
             this.TimeElapsed = timeSpan.Minutes + ":" + timeSpan.Seconds;
         }
     }

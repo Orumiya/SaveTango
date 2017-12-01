@@ -25,12 +25,17 @@
                 <Label Grid.Column="1"  ContentStringFormat="Moves:{0}" Content="{Binding Moves}"  Height="50" FontSize="30" Margin="10,0,0,0" />
                 <Label Grid.Column="2" ContentStringFormat="Level {0}" FontWeight="Bold" Content="{Binding Level}" HorizontalContentAlignment="Right" Height="50" FontSize="30"  />
                 <Label Grid.Column="4" ContentStringFormat="Time:{0}" Content="{Binding TimeElapsed}"  Height="50" FontSize="30" />
-                <Button x:Name="BackToLS" Margin="0" Width="70" Height="60" HorizontalAlignment="Center" Background="Transparent" Click="Back_Click">
+                <Button x:Name="BackToLS" Grid.Column="0" Margin="0" Width="70" Height="70" HorizontalAlignment="Center" Background="Transparent" Click="BackToLS_Click" >
                     <StackPanel Opacity="1">
-                        <Image Source="res/arrowBack.png" />
+                        <Image Source="res/stopButton.png" VerticalAlignment="Top"/>
                     </StackPanel>
                 </Button>
-                
+                <Button x:Name="Replay" Grid.Column="5" Margin="0" Width="70" Height="70" HorizontalAlignment="Center" Background="Transparent" Click="Replay_Click" >
+                    <StackPanel Opacity="1">
+                        <Image Source="res/replayButton.png" VerticalAlignment="Top" />
+                       
+                    </StackPanel>
+                </Button>
 
 
             </Grid>

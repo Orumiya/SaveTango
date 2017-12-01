@@ -206,7 +206,7 @@
         </StackPanel>
         <StackPanel Grid.Column="4" Grid.Row="4">
             <Button Name="button_level16" Content="16"  FontWeight="Bold" FontSize="50"
-                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" Click="OnSelectLevelClick" Background="{DynamicResource AddButtonImage}" FocusVisualStyle="{DynamicResource FocusButtonImage}" />
+                HorizontalAlignment="Center" Margin="40,0" VerticalAlignment="Top" Width="110" Height="90" Click="OnSelectLevelClick" Background="{DynamicResource AddButtonImage}"  />
             <StackPanel Orientation="Horizontal">
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star161" Margin="26,0,0,0"/>
                 <Polygon HorizontalAlignment="Center" Fill="Yellow" Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="28" Height="28" Stretch="Fill" Points="9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7"  Name="star162" Margin="11,0,0,0"/>

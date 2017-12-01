@@ -7,10 +7,73 @@
       mc:Ignorable="d" 
       d:DesignHeight="768" d:DesignWidth="1024"
       Title="EndPage" ShowsNavigationUI="False">
+    
     <Page.Background>
         <ImageBrush Opacity="0.8" ImageSource="res/main_backround2.jpg"></ImageBrush>
     </Page.Background>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="0.8*"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.7*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.7*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0"  Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+            <Image Source="res/Tango is saved.PNG" Stretch="Fill" Height="130" Width="400" VerticalAlignment="Top"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1"  Grid.Row="1">
+            <Label ContentStringFormat="Moves: {0}" Content="{Binding MovesSum}" FontSize="36" HorizontalAlignment="Center"/>
+            <Label ContentStringFormat="Time: {0}" Content="{Binding EndElapsedTime}" FontSize="36" HorizontalAlignment="Center"/>
+            <Image Source="res/tangoBig.PNG" Stretch="Fill" Height="200" Width="200"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1"  Grid.Row="2" VerticalAlignment="Top">
+           
+            
+        </StackPanel>
+        <StackPanel Opacity="1" Grid.Column="1" Grid.Row="2" Margin="20,0,0,0" HorizontalAlignment="Left">
+        <Button x:Name="Replay"  Margin="0" Width="80" Height="80" HorizontalAlignment="Center" Background="Transparent" Click="Replay_Click">
+            <StackPanel>
+                <Image Source="res/replayButton.png" VerticalAlignment="Top" />
+            </StackPanel>
+        </Button>
+            <Label Content="Replay level" FontSize="20" HorizontalAlignment="Left" FontWeight="Bold"/>
+        </StackPanel>
+        <StackPanel Opacity="1" Grid.Column="1" Grid.Row="2" Margin="0,0,20,0" HorizontalAlignment="Right">
+            <Button x:Name="MainMenuButton"  Margin="0" Width="80" Height="80" HorizontalAlignment="Center" Background="Transparent" Click="MainMenuButton_Click" >
+                <StackPanel>
+                    <Image Source="res/homeButton.png" VerticalAlignment="Top" />
+                </StackPanel>
+            </Button>
+            <Label Content="Main menu" FontSize="20" HorizontalAlignment="Left" FontWeight="Bold"/>
+        </StackPanel>
+        <StackPanel Opacity="1" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center">
+            <Button x:Name="NextLevel"  Margin="0" Width="80" Height="80" HorizontalAlignment="Center" Background="Transparent" Click="NextLevel_Click" >
+                <StackPanel>
+                    <Image Source="res/arrow.PNG" VerticalAlignment="Top" />
+                </StackPanel>
+            </Button>
+            <Label Content="Next level" FontSize="20" HorizontalAlignment="Left" FontWeight="Bold"/>
+        </StackPanel>
+        <StackPanel Opacity="1" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right">
+            <Button x:Name="ScoresPage"  Margin="0" Width="80" Height="80" HorizontalAlignment="Center" Background="Transparent" >
+                <StackPanel>
+                    <Image Source="res/scoresButton.png" VerticalAlignment="Top" />
+                </StackPanel>
+            </Button>
+            <Label Content="Scores" FontSize="20" HorizontalAlignment="Left" FontWeight="Bold"/>
+        </StackPanel>
+        <StackPanel Opacity="1" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left">
+            <Button x:Name="Levelselector"  Margin="0" Width="80" Height="80" HorizontalAlignment="Center" Background="Transparent" >
+                <StackPanel>
+                    <Image Source="res/levelsButton.png" VerticalAlignment="Top" />
+                </StackPanel>
+            </Button>
+            <Label Content="Levels" FontSize="20" HorizontalAlignment="Left" FontWeight="Bold"/>
+        </StackPanel>
     </Grid>
 </Page>

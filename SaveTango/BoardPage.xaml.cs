@@ -49,15 +49,20 @@ namespace SaveTango
         private DispatcherTimer timer;
 
         public int level;
+        /// <summary>
+        /// hivatkozást tárol a MainWindow mainFrame-jére
+        /// </summary>
+        private Frame mainFrame;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BoardPage"/> class.
         /// </summary>
-        public BoardPage(int level)
+        public BoardPage(Frame mainFrame, int level)
         {
             this.InitializeComponent();
             this.level = level;
             this.Gameplay = new GamePlay(level);
+            this.mainFrame = mainFrame;
         }
 
         /// <summary>
@@ -317,6 +322,10 @@ namespace SaveTango
                 this.missingY = 0;
                 this.timer.Stop();
             }
+            else
+            {
+                this.timer.Stop();
+            }
         }
 
         /// <summary>
@@ -393,7 +402,7 @@ namespace SaveTango
             {
                 Image img = this.bwVM.GamePlay.LevelSetup[i].BlockImage;
                 img.Name = "blockimage" + i.ToString();
-                this.RegisterName(img.Name, img);
+                //this.RegisterName(img.Name, img);
                 Canvas.SetTop(img, this.bwVM.GamePlay.LevelSetup[i].OnTableX * 100);
                 Canvas.SetLeft(img, this.bwVM.GamePlay.LevelSetup[i].OnTableY * 100);
                 img.MouseDown += this.OnMouseDown;
@@ -412,7 +421,9 @@ namespace SaveTango
             if (this.Gameplay.IsTangoSaved)
             {
                 this.bwVM.StopTimer();
-                MessageBox.Show("nyertél");
+                this.timer.Stop();
+                EndPage endPage = new EndPage(this.mainFrame,this.level, this.bwVM.TimeElapsed,this.bwVM.MovesSum);
+                this.mainFrame.Content = endPage;
             }
         }
 
@@ -421,13 +432,25 @@ namespace SaveTango
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Back_Click(object sender, RoutedEventArgs e)
+        private void BackToLS_Click(object sender, RoutedEventArgs e)
         {
-            if (this.NavigationService.CanGoBack)
-            {
-                this.Gameplay = null;
-                this.NavigationService.GoBack();
-            }
+            this.Gameplay = null;
+            this.bwVM.StopTimer();
+            this.DataContext = null;
+            this.bwVM = null;
+            LevelSelector levelSel = new LevelSelector(this.mainFrame);
+            this.mainFrame.Content = levelSel;
+        }
+
+       /// <summary>
+       /// a replay gombbal újra lehet kezdeni a játékot
+       /// </summary>
+       /// <param name="sender"></param>
+       /// <param name="e"></param>
+        private void Replay_Click(object sender, RoutedEventArgs e)
+        {
+            BoardPage boardPage = new BoardPage(this.mainFrame, this.level);
+            this.mainFrame.Content = boardPage;
         }
     }
 }
