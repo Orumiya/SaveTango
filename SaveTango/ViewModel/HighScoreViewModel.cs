@@ -24,7 +24,9 @@ namespace SaveTango.ViewModel
         public ObservableCollection<Score> Scores
         {
             get { return this.scores; }
-            set { this.scores = value; }
+            set { this.scores = value;
+                OnPropertyChanged("Scores");
+            }
         }
 
         public HighScoreViewModel()
@@ -53,7 +55,7 @@ namespace SaveTango.ViewModel
             string[] highscoreArray = line.Split('\n');
             for (int i = 0; i < highscoreArray.Length; i++)
             {
-                if (highscoreArray[i] != null)
+                if (highscoreArray[i] != "")
                 {
                     string levelString = string.Empty;
                     int j = 0;
@@ -89,6 +91,9 @@ namespace SaveTango.ViewModel
                 HighScores.Add(item);
             }
         }
+
+        
+
 
     }
 }

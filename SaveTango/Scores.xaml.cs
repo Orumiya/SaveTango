@@ -30,5 +30,11 @@ namespace SaveTango
             hsvm = new HighScoreViewModel();
             this.DataContext = this.hsvm;
         }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            Menu page1 = new Menu(this.mainFrame);
+            this.mainFrame.Content = page1;
+        }
     }
 }
