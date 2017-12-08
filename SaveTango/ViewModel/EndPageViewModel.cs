@@ -1,17 +1,27 @@
-﻿using SaveTango.Model;
+﻿// <copyright file="EndPageViewModel.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace SaveTango.ViewModel
 {
+    using SaveTango.Model;
+
     public class EndPageViewModel : Bindable
     {
+        private int movesSum;
+
+        /// <summary>
+        /// eltelt játékidő
+        /// </summary>
+        private string endElapsedTime;
+        private int level;
+
         public EndPageViewModel(int level, string gametime, int moves)
         {
             this.Level = level;
             this.MovesSum = moves;
             this.EndElapsedTime = gametime;
         }
-
-        private int movesSum;
 
         public int MovesSum
         {
@@ -27,11 +37,6 @@ namespace SaveTango.ViewModel
             }
         }
 
-        /// <summary>
-        /// eltelt játékidő
-        /// </summary>
-        private string endElapsedTime;
-
         public string EndElapsedTime
         {
             get
@@ -45,8 +50,6 @@ namespace SaveTango.ViewModel
                 this.OnPropertyChanged("endElapsedTime");
             }
         }
-
-        private int level;
 
         public int Level
         {

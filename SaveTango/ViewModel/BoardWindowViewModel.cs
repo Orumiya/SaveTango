@@ -1,22 +1,16 @@
-﻿using SaveTango.Model;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Windows.Controls;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media.Imaging;
-using System.Windows.Threading;
-using System.Diagnostics;
+﻿// <copyright file="BoardWindowViewModel.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace SaveTango.ViewModel
 {
+    using System;
+    using System.Diagnostics;
+    using System.Windows.Threading;
+    using SaveTango.Model;
+
     public class BoardWindowViewModel : Bindable
     {
-        public GamePlay GamePlay { get; set; }
-
         /// <summary>
         /// a játékos által elhúzott blokkok száma
         /// </summary>
@@ -31,45 +25,47 @@ namespace SaveTango.ViewModel
         /// a játékidő számlálására
         /// </summary>
         private Stopwatch stopWatch;
-
         private string timeElapsed;
-
-        /// <summary>
-        /// játékidő string formátumban
-        /// </summary>
-        public string TimeElapsed
-        {
-            get
-            {
-                return this.timeElapsed;
-            }
-
-            set
-            {
-                this.timeElapsed = value;
-                this.OnPropertyChanged("timeElapsed");
-            }
-        }
+        private int level;
+        private int movesSum;
 
         /// <summary>
         /// játékidő
         /// </summary>
         private TimeSpan timeSpan;
 
-        public TimeSpan TimeSpan
-        {
-            get { return timeSpan; }
-            set
-            {
-                timeSpan = value;
-                OnPropertyChanged("timeSpan");
-            }
-        }
-
         /// <summary>
         /// eltelt játékidő
         /// </summary>
         private string endElapsedTime;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BoardWindowViewModel"/> class.
+        /// </summary>
+        /// <param name="level">kiválasztott pálya szintje</param>
+        public BoardWindowViewModel(int level)
+        {
+            this.GamePlay = new GamePlay(level);
+            this.Moves = 0;
+            this.StartTimer();
+            this.Level = level;
+        }
+
+        public TimeSpan TimeSpan
+        {
+            get
+            {
+                return this.timeSpan;
+            }
+
+            set
+            {
+                this.timeSpan = value;
+                this.OnPropertyChanged("timeSpan");
+            }
+        }
+
+        public GamePlay GamePlay { get; set; }
 
         public string EndElapsedTime
         {
@@ -86,18 +82,21 @@ namespace SaveTango.ViewModel
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BoardWindowViewModel"/> class.
+        /// Gets or sets játékidő string formátumban
         /// </summary>
-        /// <param name="level">kiválasztott pálya szintje</param>
-        public BoardWindowViewModel(int level)
+        public string TimeElapsed
         {
-            this.GamePlay = new GamePlay(level);
-            this.Moves = 0;
-            this.StartTimer();
-            this.Level = level;
-        }
+            get
+            {
+                return this.timeElapsed;
+            }
 
-        private int level;
+            set
+            {
+                this.timeElapsed = value;
+                this.OnPropertyChanged("timeElapsed");
+            }
+        }
 
         public int Level
         {
@@ -127,7 +126,6 @@ namespace SaveTango.ViewModel
             }
         }
 
-        private int movesSum;
         public int MovesSum
         {
             get
@@ -168,7 +166,7 @@ namespace SaveTango.ViewModel
         private void DispatcherTimerTick_(object sender, EventArgs e)
         {
             this.timeSpan = this.stopWatch.Elapsed;
-            this.TimeElapsed = timeSpan.Minutes + ":" + timeSpan.Seconds;
+            this.TimeElapsed = this.timeSpan.Minutes + ":" + this.timeSpan.Seconds;
         }
     }
 }

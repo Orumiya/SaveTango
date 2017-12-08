@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="Bindable.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace SaveTango.Model
 {
+    using System.ComponentModel;
+
     /// <summary>
     /// A class az adatkötésekhez szükséges OnPropertyChanged metódust szolgáltatja.
     /// </summary>

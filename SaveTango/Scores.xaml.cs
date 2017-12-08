@@ -1,33 +1,26 @@
-﻿using SaveTango.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿// <copyright file="Scores.xaml.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace SaveTango
 {
+    using System.Windows;
+    using System.Windows.Controls;
+    using SaveTango.ViewModel;
+
     /// <summary>
     /// Interaction logic for Scores.xaml
     /// </summary>
     public partial class Scores : Page
     {
-        Frame mainFrame;
-        public HighScoreViewModel hsvm;
+        private HighScoreViewModel hsvm;
+        private Frame mainFrame;
+
         public Scores(Frame mainFrame)
         {
             this.InitializeComponent();
             this.mainFrame = mainFrame;
-            hsvm = new HighScoreViewModel();
+            this.hsvm = new HighScoreViewModel();
             this.DataContext = this.hsvm;
         }
 

@@ -1,4 +1,8 @@
-﻿namespace SaveTango.Model
+﻿// <copyright file="Bar.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace SaveTango.Model
 {
     using System;
     using System.Windows.Controls;
@@ -12,8 +16,8 @@
         /// </summary>
         /// <param name="vertical">függőlegesen áll-e a blokk?</param>
         /// <param name="blockLength">milyen hosszú a blokk?</param>
-        /// <param name="blockImage">a blokkhoz tartozó kép</param>
-       
+        /// <param name="onTableX">a blokk kezdő X pozíciója a táblán</param>
+        /// <param name="onTableY">a blokk kezdő Y pozíciója a táblán</param>
         public Bar(bool vertical, int blockLength, int onTableX, int onTableY)
         {
             this.Vertical = vertical;
@@ -21,8 +25,6 @@
             this.BlockImage = this.WhichImageGoesToWhichBlock();
             this.OnTableX = onTableX;
             this.OnTableY = onTableY;
-
-
         }
 
         public override bool Vertical { get => base.Vertical; set => base.Vertical = value; }
@@ -34,18 +36,21 @@
         public override int InitialCanvasTop { get => base.InitialCanvasTop; set => base.InitialCanvasTop = value; }
 
         public override int InitialCanvasLeft { get => base.InitialCanvasLeft; set => base.InitialCanvasLeft = value; }
-        public override int OnTableX { 
-            get { return base.OnTableX; }
-            
-                set {
-                    base.OnTableX = value;
-                    OnPropertyChanged("OnTableX");
-                }
-            
+
+        public override int OnTableX {
+            get
+            {
+                return base.OnTableX;
+            }
+
+            set
+            {
+                base.OnTableX = value;
+                this.OnPropertyChanged("OnTableX");
+            }
         }
 
         public override int OnTableY { get => base.OnTableY; set => base.OnTableY = value; }
-
 
         /// <summary>
         /// megállapítja, hogy a táblán levő rúd hossza és orientációja

@@ -1,4 +1,8 @@
-﻿namespace SaveTango.Model
+﻿// <copyright file="Block.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace SaveTango.Model
 {
     using System.Windows.Controls;
 
@@ -10,11 +14,10 @@
         /// </summary>
         public Block()
         {
-
         }
 
         /// <summary>
-        /// a vertical property azt mondja meg, hogy a blokk horizontálisan vagy vertikálisan helyezkedik-e el
+        /// Gets or sets a value indicating whether a vertical property azt mondja meg, hogy a blokk horizontálisan vagy vertikálisan helyezkedik-e el
         /// vertical igaz, ha vertikális
         /// vertical hamis, ha horizontális
         /// </summary>
@@ -25,7 +28,7 @@
         }
 
         /// <summary>
-        /// a blockLength property beállítja a blokk méretét
+        /// Gets or sets a blockLength property beállítja a blokk méretét
         /// lehetséges értékek a játékban: 2 vagy 3
         /// </summary>
         public virtual int BlockLength
@@ -35,7 +38,7 @@
         }
 
         /// <summary>
-        /// a Block-nak a vizuális megjelenési formája a táblán
+        /// Gets or sets a Block-nak a vizuális megjelenési formája a táblán
         /// </summary>
         public virtual Image BlockImage
         {
@@ -44,7 +47,7 @@
         }
 
         /// <summary>
-        /// a blokk kezdő pozíciója a tábla tetejétől számítva
+        /// Gets or sets a blokk kezdő pozíciója a tábla tetejétől számítva
         /// </summary>
         public virtual int InitialCanvasTop
         {
@@ -53,20 +56,21 @@
         }
 
         /// <summary>
-        /// a blokk kezdő pozíciója a tábla bal oldalától számítva
+        /// Gets or sets a blokk kezdő pozíciója a tábla bal oldalától számítva
         /// </summary>
         public virtual int InitialCanvasLeft
         {
             get;
             set;
         }
+
         /// <summary>
-        /// a blokk kezdő sor koordinátája
+        /// Gets or sets a blokk kezdő sor koordinátája
         /// </summary>
         public virtual int OnTableX { get; set; }
 
         /// <summary>
-        /// a blokk kezdő oszlop koordinátája
+        /// Gets or sets a blokk kezdő oszlop koordinátája
         /// </summary>
         public virtual int OnTableY { get; set; }
 

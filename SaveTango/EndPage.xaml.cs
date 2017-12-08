@@ -1,12 +1,15 @@
-﻿using SaveTango.ViewModel;
-using System;
-using System.IO;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Shapes;
+﻿// <copyright file="EndPage.xaml.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace SaveTango
 {
+    using System;
+    using System.IO;
+    using System.Windows;
+    using System.Windows.Controls;
+    using SaveTango.ViewModel;
+
     /// <summary>
     /// Interaction logic for EndPage.xaml
     /// </summary>
@@ -71,8 +74,10 @@ namespace SaveTango
             filePath += @"\scores.txt";
 
             string text = this.Level.ToString() + "_" + this.Moves.ToString() + "_" + this.Gametime;
+
             // Create a string array with the additional lines of text
             string[] lines = { text };
+
             // Append new lines of text to the file
             File.AppendAllLines(filePath, lines);
         }

@@ -1,39 +1,46 @@
-﻿using SaveTango.Model;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="HighScoreViewModel.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace SaveTango.ViewModel
 {
+    using System;
+    using System.Collections.ObjectModel;
+    using System.IO;
+    using SaveTango.Model;
+
     public class HighScoreViewModel : Bindable
     {
         private ObservableCollection<string> highScores;
-
-        public ObservableCollection<string> HighScores
-        {
-            get { return highScores; }
-            private set { highScores = value; }
-        }
-
         private ObservableCollection<Score> scores;
-
-        public ObservableCollection<Score> Scores
-        {
-            get { return this.scores; }
-            set { this.scores = value;
-                OnPropertyChanged("Scores");
-            }
-        }
+        private ObservableCollection<Score> sortedScores;
 
         public HighScoreViewModel()
         {
             this.highScores = new ObservableCollection<string>();
             this.scores = new ObservableCollection<Score>();
             this.ReadingTheHighScoresFromFile();
+            this.scores.Sort();
+        }
+
+        public ObservableCollection<string> HighScores
+        {
+            get { return this.highScores; }
+            private set { this.highScores = value; }
+        }
+
+        public ObservableCollection<Score> Scores
+        {
+            get
+            {
+                return this.scores;
+            }
+
+            set
+            {
+                this.scores = value;
+                this.OnPropertyChanged("Scores");
+            }
         }
 
         private void ReadingTheHighScoresFromFile()
@@ -50,20 +57,25 @@ namespace SaveTango.ViewModel
                     line += sr.ReadToEnd();
                 }
             }
+#pragma warning disable CS0168 // Variable is declared but never used
             catch (Exception ex)
-            { }
+#pragma warning restore CS0168 // Variable is declared but never used
+            {
+            }
+
             string[] highscoreArray = line.Split('\n');
             for (int i = 0; i < highscoreArray.Length; i++)
             {
-                if (highscoreArray[i] != "")
+                if (highscoreArray[i] != string.Empty)
                 {
                     string levelString = string.Empty;
                     int j = 0;
-                    while (j < highscoreArray[i].Length-1 && highscoreArray[i][j] != '_')
+                    while (j < highscoreArray[i].Length - 1 && highscoreArray[i][j] != '_')
                     {
                         levelString += highscoreArray[i][j].ToString();
                         j++;
                     }
+
                     j++;
                     int level = int.Parse(levelString);
                     string movesString = string.Empty;
@@ -87,13 +99,8 @@ namespace SaveTango.ViewModel
 
             foreach (string item in highscoreArray)
             {
-                
-                HighScores.Add(item);
+                this.HighScores.Add(item);
             }
         }
-
-        
-
-
     }
 }

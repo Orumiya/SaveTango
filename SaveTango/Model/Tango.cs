@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
+﻿// <copyright file="Tango.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace SaveTango.Model
 {
+    using System;
+    using System.Windows.Controls;
+    using System.Windows.Media.Imaging;
+
     public class Tango : Block
     {
         /// <summary>
@@ -22,26 +22,27 @@ namespace SaveTango.Model
         }
 
         /// <summary>
-        /// Tango vízszintesen áll a táblán
+        /// Gets a value indicating whether tango vízszintesen áll a táblán
         /// </summary>
         public override bool Vertical { get => false; }
 
         /// <summary>
-        /// Tango 2 hosszúságú
+        /// Gets tango 2 hosszúságú
         /// </summary>
         public override int BlockLength { get => 2; }
 
         /// <summary>
-        /// a property Tango képfile-ját tartalmazza
+        /// Gets a property Tango képfile-ját tartalmazza
         /// </summary>
         public override Image BlockImage { get => base.BlockImage; }
 
         public override int InitialCanvasTop { get => base.InitialCanvasTop; set => base.InitialCanvasTop = value; }
 
         public override int InitialCanvasLeft { get => base.InitialCanvasLeft; set => base.InitialCanvasLeft = value; }
-        public override int OnTableX { get => base.OnTableX; set => base.OnTableX = value; }
-        public override int OnTableY { get => base.OnTableY; set => base.OnTableY = value; }
 
+        public override int OnTableX { get => base.OnTableX; set => base.OnTableX = value; }
+
+        public override int OnTableY { get => base.OnTableY; set => base.OnTableY = value; }
 
         /// <summary>
         /// Tangohoz hozzárendeli a megfelelő képet
@@ -54,7 +55,7 @@ namespace SaveTango.Model
             img.Source = new BitmapImage(uri);
             return img;
         }
-        
+
         public bool IsTangoSaved()
         {
             if (this.OnTableX == 2 && this.OnTableY == 4)
