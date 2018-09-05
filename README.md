@@ -1,29 +1,8 @@
 # README #
 
-This is gonna be awesome!
-
-### What is this repository for? ###
-
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+WPF game project (MVVM)
+- creating user interface
+- the user can control the game elements by clicking and sliding them
+- handling collisions between game elements
+- counting time and scores and writing to a txt file
+- creating the game setup by reading txt file
